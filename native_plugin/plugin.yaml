@@ -1,0 +1,18 @@
+name: bnn-intake-isolated
+version: 0.11.0
+description: Isolated qualification of the intake extension on the pinned BNN host
+manifest_version: 2
+api_version: 1
+kind: standalone
+config_schema:
+  settings_file:
+    type: str
+    required: true
+provides_tools:
+  - intake_work
+  - intake_methods
+  - intake_questions
+  - intake_documents
+  - intake_analysis
+  - intake_research
+  - intake_delegation

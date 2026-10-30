@@ -1,0 +1,1574 @@
+{
+  "spec_version": "1.0 with acceptance amendment 1.1",
+  "component_version": "0.14.2",
+  "requirements_count": 120,
+  "full_Spec_acceptance_claimed": false,
+  "requirements": [
+    {
+      "id": "SP-001",
+      "requirement": "Смысловой intake должен переиспользовать действующий безопасный приём, сохраняя его собственные обязательства",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Адаптер существующего пути document_/intake.py",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-002",
+      "requirement": "Смысловой intake должен иметь независимые режимы off, auto и on",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Область переключателя профиль/сессия/работа",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_on_routes_unprepared_work_from_complete_native_input_not_short_query",
+        "test_auto_does_not_create_a_work_or_contract_for_an_unbound_conversation",
+        "test_off_removes_preparation_header_and_survives_optional_outcome_failure"
+      ],
+      "qualification_limits": "Режимы имеют разные входные маршруты; смысловой автоматический отбор задач во всех профилях ещё не принят."
+    },
+    {
+      "id": "SP-003",
+      "requirement": "Выключение UDR/Foundation либо GSD не должно выключать самостоятельный intake",
+      "criticality": "P0",
+      "implementation_increment": "A3",
+      "proposed_mechanism": "Независимые состояния модулей и явные зависимости",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_off_removes_new_intake_context_and_preserves_common_protection"
+      ],
+      "qualification_limits": "Off сохраняет общую защиту; все восемь сочетаний с реальными UDR/GSD ещё не испытаны."
+    },
+    {
+      "id": "SP-004",
+      "requirement": "Изменение режима в одной работе не должно молча изменять другой профиль или работу",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Профильная маршрутизация и явная область состояния",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_modes_are_profile_local_in_the_shared_primary_db"
+      ],
+      "qualification_limits": "Изоляция в общей SQLite; настоящий multiplex ещё не проверен."
+    },
+    {
+      "id": "SP-005",
+      "requirement": "Режим auto должен выбирать объём подготовки по назначению и риску",
+      "criticality": "P1",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Оценка входа и объяснимое решение активации",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-006",
+      "requirement": "Профиль работы должен принимать ровно шесть согласованных канонических названий",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Валидация eMVP/MVP/Standard/eStandard/High Stakes/Critical Infrastructure",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_profile_contract_is_versioned_cumulative_and_not_a_permit",
+        "test_changed_minimum_blocks_new_analysis_without_hiding_saved_status",
+        "test_tampered_profile_is_not_rebuilt_silently"
+      ],
+      "qualification_limits": "Шесть канонических имён имеют версионированные обязательства; текущий минимум проверяется. Автономная оценка риска и изменение профиля подготовленной работы не реализованы."
+    },
+    {
+      "id": "SP-007",
+      "requirement": "Название профиля не должно механически подменять EvidenceStandard UDR",
+      "criticality": "P0",
+      "implementation_increment": "A3",
+      "proposed_mechanism": "Версионированный перевод явных обязательств",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_profile_contract_is_versioned_cumulative_and_not_a_permit"
+      ],
+      "qualification_limits": "Профильный договор и перевод обязательств сохраняются в Foundation. Уровень E не выбирается автоматически; штатный EvidenceStandard требует отдельных явных решений."
+    },
+    {
+      "id": "SP-008",
+      "requirement": "Работа должна хранить цель, область, результат и условия качества независимо от диалога",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "WorkContract с версией",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_prepare_is_real_revision_and_survives_new_engine"
+      ],
+      "qualification_limits": "Договор и родная рабочая привязка; Beads-карточка испытания синтетическая."
+    },
+    {
+      "id": "SP-009",
+      "requirement": "Система должна разделять проектирование, реализацию, подключение и проверенное исполнение",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Независимые поля состояния и ссылки на свидетельства",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-010",
+      "requirement": "Отказ необязательного или выключенного intake не должен блокировать несвязанную работу Hermes",
+      "criticality": "P0",
+      "implementation_increment": "A3",
+      "proposed_mechanism": "Граф зависимостей и локальное закрытие пути",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_off_removes_preparation_header_and_survives_optional_outcome_failure"
+      ],
+      "qualification_limits": "Владелец может выключить intake при отсутствующем необязательном журнале исполнения; общий контролируемый путь сохраняется."
+    },
+    {
+      "id": "SP-011",
+      "requirement": "Каждая работа должна иметь явную версию состава предоставленного и найденного корпуса",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "CorpusFrameRevision с рамкой перечисления",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_unbound_corpus_and_changed_frozen_inventory_are_rejected"
+      ],
+      "qualification_limits": "Версия состава привязана к нативному корпусу. Обновление состава требует новой версии; все межсервисные входы ещё не подключены."
+    },
+    {
+      "id": "SP-012",
+      "requirement": "Повтор, версия и отдельное происхождение должны учитываться как разные отношения",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Устойчивые идентификаторы и связи версий/дубликатов",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-013",
+      "requirement": "Оригинальные байты должны сохраняться с воспроизводимой контрольной суммой",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Неизменяемое хранилище и source revision",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_changed_sources_and_forged_references_close_document_path"
+      ],
+      "qualification_limits": "Нативные неизменяемые оригиналы и точные хеши проверены в восьми форматных путях. Состояние живого экземпляра не менялось."
+    },
+    {
+      "id": "SP-014",
+      "requirement": "Совпадение содержимого не должно переносить разрешения и атрибуцию между источниками",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Отдельные происхождение и политика доступа",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_work_scoped_coverage_ignores_a_synthetic_receipt_of_another_work"
+      ],
+      "qualification_limits": "Квитанция другой работы не переносит атрибуцию. Положительная квитанция в этом конкретном тесте синтетическая; не является модельным чтением."
+    },
+    {
+      "id": "SP-015",
+      "requirement": "Неподдержанный формат или повреждённый объект должен оставаться явным незавершённым входом",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Состояние представления и диагностическая ошибка",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_unsupported_and_corrupt_input_remain_explicitly_unfinished",
+        "test_thousand_sources_inventory_is_complete_but_not_a_reading_claim"
+      ],
+      "qualification_limits": "Неподдержанный и повреждённый вход остаётся непокрытым, без молчаливого исключения."
+    },
+    {
+      "id": "SP-016",
+      "requirement": "Парсер не должен исполнять встроенные инструкции документа как команды",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Действующий доверенный разбор и разграничение данных/инструкций",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_native_parser_and_addressed_plan_do_not_claim_model_reading"
+      ],
+      "qualification_limits": "Использован существующий ограниченный ОС исполнитель; HTML/SQL не исполнялись. Полный аудит активного содержимого всех форматов не заявляется."
+    },
+    {
+      "id": "SP-017",
+      "requirement": "Представление должно сохранять адресуемые локаторы и преобразования к оригиналу",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Representation с исходной версией и картой локаторов",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_native_parser_and_addressed_plan_do_not_claim_model_reading",
+        "test_sqlite_rows_include_complete_schema_and_table_schema"
+      ],
+      "qualification_limits": "Сохранены нативные локаторы, хеши и диапазоны. Смысловая разметка локаторов ещё не выполнялась."
+    },
+    {
+      "id": "SP-018",
+      "requirement": "Формула, сохранённое значение, единица, примечание, пропуск и ноль не должны сливаться",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Типизированное извлечение и контекстные зависимости",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-019",
+      "requirement": "Физический блок не должен автоматически считаться смысловой единицей",
+      "criticality": "P1",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Правила сегментации и межблочные зависимости",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_pdf_native_request_transports_exact_text_and_image_without_false_receipt"
+      ],
+      "qualification_limits": "Физическая единица и доставка не называются пониманием; модель и содержательный рецензент не вызывались."
+    },
+    {
+      "id": "SP-020",
+      "requirement": "Полнота должна отражаться по отдельным плоскостям: состав, доступ, разбор, доставка, обработка, проверка и применение",
+      "criticality": "P0",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Вектор покрытия с явными знаменателями",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_unsupported_and_corrupt_input_remain_explicitly_unfinished",
+        "test_pdf_native_request_transports_exact_text_and_image_without_false_receipt"
+      ],
+      "qualification_limits": "Состав, разбор, доставка и продукты различены. Отдельно проверены ограниченные продукты настоящей модели; независимая проверка и общее предметное применение ещё не приняты."
+    },
+    {
+      "id": "SP-021",
+      "requirement": "Материал сверх окна контекста должен обрабатываться частями с восстановимым прогрессом",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Адресные задания, dependency closure и контрольные точки",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_native_parser_and_addressed_plan_do_not_claim_model_reading",
+        "test_partial_parse_invalidates_continuation_without_hiding_missing_sources",
+        "test_separate_cli_process_reads_the_same_work_corpus"
+      ],
+      "qualification_limits": "Проверены порционный разбор, точная пагинация большого текста и состояние в другом процессе. Автоматический распределённый планировщик ещё отсутствует."
+    },
+    {
+      "id": "SP-022",
+      "requirement": "Система не должна обещать поддержку любого формата или объёма без зарегистрированного пути обработки",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Реестр фактических форматов, ограничений и ошибок",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_unsupported_and_corrupt_input_remain_explicitly_unfinished"
+      ],
+      "qualification_limits": "Проверена явная незавершённость неизвестного формата; обещания любого формата/размера нет."
+    },
+    {
+      "id": "SP-023",
+      "requirement": "Каталог должен содержать заранее проработанные операции, входы, продукты и проверки каждой заявленной карточки",
+      "criticality": "P1",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Версионированные карточки и проверка обязательных полей",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-024",
+      "requirement": "Тип подхода должен различать парадигму, теорию, модель, методологию, метод, процедуру, нотацию, принцип и инструмент",
+      "criticality": "P1",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Многомерная классификация и роль конкретного применения",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_method_classification_is_addressed_and_open",
+        "test_required_traces_preserve_distinct_levels_and_check_obligations"
+      ],
+      "qualification_limits": "Типы и уровни представлены раздельно; смысловая согласованность модели и метода ещё требует предметной проверки."
+    },
+    {
+      "id": "SP-025",
+      "requirement": "Каталог должен поддерживать метасемейства и перекрёстные основания выбора",
+      "criticality": "P1",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "MF01–MF24 и TR01–TR20 с возможностью расширения",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_method_classification_is_addressed_and_open",
+        "test_method_application_does_not_require_closed_family_axis_or_method_ids"
+      ],
+      "qualification_limits": "Адресные семейства и открытые основания доступны. Автоматический предметный отбор не принят."
+    },
+    {
+      "id": "SP-026",
+      "requirement": "Отсутствие подхода в общем FW-каталоге не должно само по себе блокировать аналитический выбор",
+      "criticality": "P0",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Открытый локальный MethodDescriptor, а не закрытый enum методов",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_method_application_does_not_require_closed_family_axis_or_method_ids"
+      ],
+      "qualification_limits": "Локальный метод и новое основание проходят тот же контракт применения без нового инструментального допуска."
+    },
+    {
+      "id": "SP-027",
+      "requirement": "Выбранный подход вне каталога должен иметь явные назначение, операцию, входы, выход и ограничения",
+      "criticality": "P1",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Локальная карточка и запись происхождения",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_method_application_does_not_require_closed_family_axis_or_method_ids"
+      ],
+      "qualification_limits": "Локальная карточка и конкретная операция закреплены в применении; каноническая методология не сертифицируется этим результатом."
+    },
+    {
+      "id": "SP-028",
+      "requirement": "Выбор аналитического подхода не должен расширять инструментальные полномочия",
+      "criticality": "P0",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Раздельные методический выбор и контроль защищённого действия",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_extra_fields_bool_revision_and_unknown_action_are_rejected"
+      ],
+      "qualification_limits": "Новый подход не открывает произвольную команду; реальная action policy ещё не квалифицирована."
+    },
+    {
+      "id": "SP-029",
+      "requirement": "Выбор основания декомпозиции должен зависеть от цели, предмета, объекта и материала",
+      "criticality": "P1",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "План представлений с читаемыми основаниями",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_renaming_an_application_does_not_evade_exact_repeat_detection"
+      ],
+      "qualification_limits": "Сохраняются цель, основание выбора, операции и исключённые перспективы. Пригодность самого выбора реальной моделью не испытывалась."
+    },
+    {
+      "id": "SP-030",
+      "requirement": "Переходы понятие → измерения → операциональные основания → инструменты должны быть прослеживаемы",
+      "criticality": "P1",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Типизированный граф операционализации",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_required_traces_preserve_distinct_levels_and_check_obligations"
+      ],
+      "qualification_limits": "Концептуальная трасса требует четырёх отдельных уровней и обязательств. Семантическая валидность их содержания остаётся открытой."
+    },
+    {
+      "id": "SP-031",
+      "requirement": "Связи парадигмы, теории, модели, методологии и процедуры должны проверяться на согласованность",
+      "criticality": "P1",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Граф оснований, версий и методических предпосылок",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_required_traces_preserve_distinct_levels_and_check_obligations"
+      ],
+      "qualification_limits": "Трасса оснований требует семи отдельных уровней; независимая проверка согласованности ещё не реализована."
+    },
+    {
+      "id": "SP-032",
+      "requirement": "Каждая декомпозиция должна завершаться полезными проверяемыми атомами и правилом сборки",
+      "criticality": "P1",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Условие остановки атомизации и интерфейсы частей",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_invalid_returned_product_is_rejected_before_write_reservation",
+        "test_subject_cycle_does_not_create_recursive_execution"
+      ],
+      "qualification_limits": "Проверены адресные узлы, уровни, концы связей и обязательства. Полезность атомов и корректность отношений не выводятся из структуры."
+    },
+    {
+      "id": "SP-033",
+      "requirement": "Общая рамка или название метода не должны засчитываться как исполненная конкретная процедура",
+      "criticality": "P0",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "MethodApplication с фактическим продуктом и проверкой",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_product_requires_returned_origin_not_only_context_preparation",
+        "test_real_middleware_product_provenance_and_addressed_read",
+        "test_missing_execution_wrapper_fails_at_final_controller",
+        "test_native_deferred_product_matches_the_core_unwrapped_call"
+      ],
+      "qualification_limits": "Требуется вернувшийся точный вызов, включая штатный диспетчер. Дополнительно выполнены отдельные настоящие модельные прогоны; локальный pytest сам модель не вызывает."
+    },
+    {
+      "id": "SP-034",
+      "requirement": "Сочетание подходов должно сохранять существенные конфликты процедур и критериев качества",
+      "criticality": "P0",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Матрица совместимости и явное решение варианта",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-035",
+      "requirement": "Неответ, незнание и отказ отвечать не должны означать остановку разрешённого исследования",
+      "criticality": "P0",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Раздельные состояние ответа и политика сбора",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_stopped_interview_does_not_block_an_independent_approved_source"
+      ],
+      "qualification_limits": "Настоящее локальное чтение продолжается при остановленном интервью. Полный подбор всех допустимых внешних альтернатив ещё не принят."
+    },
+    {
+      "id": "SP-036",
+      "requirement": "Явный запрет на сбор или остановка всей работы должны исполняться в своей области",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Доверенная политика областей действий",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-037",
+      "requirement": "Каждая существенная лакуна должна быть сформулирована как проверяемая информационная потребность",
+      "criticality": "P1",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Gap с целью, типом, влиянием и зависимостями",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-038",
+      "requirement": "Для лакуны должен быть составлен план релевантных разрешённых исследовательских и аналитических путей",
+      "criticality": "P1",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Классы источников, методов и журнал неприменимости",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_real_source_dispatch_produces_receipt_and_exact_paginated_result",
+        "test_real_outer_precheck_then_agent_final_dispatch_then_registry"
+      ],
+      "qualification_limits": "Путь привязан к фактическому инструменту и нативной попытке; это не автоматическая проверка полноты выбранных семейств источников."
+    },
+    {
+      "id": "SP-039",
+      "requirement": "Перед новым сбором должны проверяться релевантные уже имеющиеся материалы и прежние попытки",
+      "criticality": "P1",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Адресный поиск по диалогу, работе, памяти и первоисточникам",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_repeated_exact_search_does_not_start_another_executor",
+        "test_preparation_routes_to_saved_receipt_instead_of_repeating_source"
+      ],
+      "qualification_limits": "Точное повторение использует квитанцию; адресный маршрут ведёт к сохранённому ответу. Смысловой поиск всех прежних проектов ещё не квалифицирован."
+    },
+    {
+      "id": "SP-040",
+      "requirement": "Полученный поисковый кандидат не должен засчитываться как прочитанный оригинал",
+      "criticality": "P0",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Явный уровень чтения и последующий допустимый доступ",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_source_receipt_enters_addressed_analysis_without_becoming_primary_independent_evidence"
+      ],
+      "qualification_limits": "Возвращённый ответ и источник анализа различаются; подтверждение полного чтения оригинала не выводится из квитанции инструмента."
+    },
+    {
+      "id": "SP-041",
+      "requirement": "Следующий исследовательский шаг должен добавлять различимый вопрос, источник, метод или проверку",
+      "criticality": "P1",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Оценка новизны попытки и причины повторения",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_repeated_exact_search_does_not_start_another_executor",
+        "test_parallel_identical_calls_are_serialized_before_the_source_effect",
+        "test_renaming_same_path_does_not_evade_repeat_detection"
+      ],
+      "qualification_limits": "Проверены точные повторы и гонка перед исполнителем. Семантическая эквивалентность всех новых формулировок не распознаётся этим механизмом."
+    },
+    {
+      "id": "SP-042",
+      "requirement": "Отказ одного поставщика должен допускать другой разрешённый содержательный путь",
+      "criticality": "P1",
+      "implementation_increment": "A3",
+      "proposed_mechanism": "Маршрут возможностей с сохранением фактического поставщика",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-043",
+      "requirement": "Смена поставщика не должна выдавать неуспешный тест конкретной интеграции за успешный",
+      "criticality": "P0",
+      "implementation_increment": "A3",
+      "proposed_mechanism": "Раздельные цель исследования и цель проверки сервиса",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_real_source_dispatch_produces_receipt_and_exact_paginated_result",
+        "test_error_result_does_not_qualify_as_success_or_evidence_of_absence"
+      ],
+      "qualification_limits": "Инструмент и его ошибка закреплены в своей квитанции; положительная квалификация разных настоящих сетевых служб ещё не выполнена."
+    },
+    {
+      "id": "SP-044",
+      "requirement": "Симуляция, аналогия и расчёт по допущениям не должны заменять отсутствующее наблюдение",
+      "criticality": "P0",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Тип знания и происхождение параметров",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-045",
+      "requirement": "Ограниченный итог должен предваряться оценкой выполненных путей и оставшихся возможностей",
+      "criticality": "P0",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "ResearchCompletionAssessment с основаниями закрытия",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_operator_review_and_limited_assessment_preserve_actual_remainder",
+        "test_optional_unfinished_path_still_prevents_false_complete_assessment",
+        "test_new_returned_result_reopens_path_review_without_erasing_the_old_one",
+        "test_new_unreviewed_path_invalidates_gap_resolution_without_repeating_finished_path"
+      ],
+      "qualification_limits": "Заключение проверяет выполненные пути, версии проверок и остаток. Итог остаётся кандидатом, без независимой предметной или полной научной приёмки."
+    },
+    {
+      "id": "SP-046",
+      "requirement": "Исчерпание ресурса или техническая пауза не должны считаться исчерпанностью свидетельств",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Различённые причины приостановки и состояние пути",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-047",
+      "requirement": "Ответ пользователя должен сохраняться как первичное сообщение с автором и контекстом",
+      "criticality": "P0",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Response с локатором диалога и типом знания",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_fake_response_without_native_origin_is_rejected"
+      ],
+      "qualification_limits": "Проверка родного происхождения сообщения; планировщик опроса не завершён."
+    },
+    {
+      "id": "SP-048",
+      "requirement": "Опрос должен быть адресным по пробелу либо всесторонним по явному запросу и назначению",
+      "criticality": "P1",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "План тем и адаптивная очередь вопросов",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-049",
+      "requirement": "Вопрос не должен повторно запрашивать уже доступный релевантный ответ без причины",
+      "criticality": "P1",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Общий реестр вопросов и проверка версии ответа",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-050",
+      "requirement": "Состояния неизвестно, отказ, пропуск, нет данных и неприменимо должны быть различимы",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Типизированные состояния Response",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-051",
+      "requirement": "Пауза или остановка интервью должна прекращать новые вопросы до разрешённого возобновления",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Наследуемая политика вопросов и проверка перед отправкой",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_stop_prevents_question_but_not_research_path",
+        "test_work_resume_and_new_engine_do_not_resume_interview",
+        "test_cached_question_cannot_bypass_later_owner_stop"
+      ],
+      "qualification_limits": "Контроль структурированного маршрута. Свободный текст модели и смысловая классификация тем ещё не приняты."
+    },
+    {
+      "id": "SP-052",
+      "requirement": "Отказанные темы и ограничения опроса должны наследоваться всем детям соответствующей работы",
+      "criticality": "P0",
+      "implementation_increment": "A3",
+      "proposed_mechanism": "Единый Question ledger и политика handoff",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_updated_owner_interview_restriction_is_in_the_child_signed_frame",
+        "test_child_cannot_change_work_profile_or_prepare_a_second_handoff"
+      ],
+      "qualification_limits": "Текущие ограничения и запрет прямого интервью передаются в нативный пакет. Свободный текст всех моделей ещё не получил полной смысловой приёмки."
+    },
+    {
+      "id": "SP-053",
+      "requirement": "Личные предпочтения нельзя выводить из внешних данных как известный ответ пользователя",
+      "criticality": "P0",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Различение фактов, предпочтений и условных сценариев",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_refusal_cannot_be_reasked_by_renaming_question"
+      ],
+      "qualification_limits": "Реестр вопросов и явный допуск повтора; не заявляется семантическое обнаружение всех парафразов."
+    },
+    {
+      "id": "SP-054",
+      "requirement": "Вопросы и ответы должны сохранять границы доступа и минимально необходимую передачу",
+      "criticality": "P0",
+      "implementation_increment": "A3",
+      "proposed_mechanism": "Тематическая область, права и адресный контекст",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-055",
+      "requirement": "Отказ пользователя должен создавать исследовательский маршрут либо конкретное обоснование невозможности внешнего восполнения",
+      "criticality": "P0",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Gap plan, а не автоматический финальный отказ",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-056",
+      "requirement": "Система должна поддерживать повторную экспозицию сообщений и экспертных ответов наряду с файлами",
+      "criticality": "P1",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Общий Source/Observation контракт с типом носителя",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-057",
+      "requirement": "Наблюдение, сообщение о событии, интерпретация и гипотеза должны иметь разные статусы",
+      "criticality": "P0",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Типизация Observation/Assertion/Assessment",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-058",
+      "requirement": "Выполнение структуры не должно доказывать смысловую корректность продукта",
+      "criticality": "P0",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Раздельные структурная, предметная и процедурная проверки",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-059",
+      "requirement": "Смысловые категории должны иметь определения, границы и правила различения при необходимости задачи",
+      "criticality": "P1",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Версионированные правила, примеры и пограничные случаи",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-060",
+      "requirement": "Кодовая книга должна определять правила применения кодов и обработки исключений, если требуется кодирование",
+      "criticality": "P1",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Версия codebook и связь с сегментацией",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-061",
+      "requirement": "Сила свидетельства должна оцениваться относительно конкретного вывода и назначения",
+      "criticality": "P0",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Assessment с основанием и зависимостями",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-062",
+      "requirement": "Перепечатки, индексы и производные записи одного оригинала не должны считаться независимыми подтверждениями",
+      "criticality": "P0",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Граф происхождения и группировка общего источника",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-063",
+      "requirement": "Материал вне текущей рамки и отрицательные случаи должны сохраняться для пересмотра",
+      "criticality": "P1",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Реестр непокрытого, противоречий и альтернатив",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-064",
+      "requirement": "Независимость проверки должна определяться процедурой и данными, а не числом одинаковых ролей",
+      "criticality": "P0",
+      "implementation_increment": "A3",
+      "proposed_mechanism": "Декларация независимости и фактическая трасса проверки",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-065",
+      "requirement": "Самоотчёт модели о понимании не должен становиться доказательством полного смыслового покрытия",
+      "criticality": "P0",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Квитанции доставки отдельно от заданий и проверенных продуктов",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_pdf_native_request_transports_exact_text_and_image_without_false_receipt"
+      ],
+      "qualification_limits": "Подготовка, допуск и намеренный останов до поставщика не дают ложной квитанции чтения либо смысловой приёмки."
+    },
+    {
+      "id": "SP-066",
+      "requirement": "Пересмотр сегментации, понятий, кодов и оценки должен иметь раздельные версии",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Раздельные сущности и dependency graph",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-067",
+      "requirement": "Канонические записи должны храниться в существующей основе, отдельно от производных индексов",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Существующие SQLite/файлы и версии данных",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_explicit_migration_idempotent_on_the_same_primary_db",
+        "test_schema_v2_upgrade_preserves_snapshots_and_operations"
+      ],
+      "qualification_limits": "Все новые связи и ревизии остаются в существующей memory.sqlite; нативный документарный журнал не дублируется."
+    },
+    {
+      "id": "SP-068",
+      "requirement": "Запись памяти должна иметь горизонт, тип, назначение и область последующего использования",
+      "criticality": "P1",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Политика долговременной, рабочей и оперативной памяти",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-069",
+      "requirement": "Семантическая, эпизодическая и процедурная запись не должны автоматически сливаться в один тип",
+      "criticality": "P1",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Существующая типизация памяти и происхождение",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-070",
+      "requirement": "Способ поиска должен соответствовать точному, целевому, смысловому, эвристическому запросу либо слепку",
+      "criticality": "P1",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Маршрутизация recall по назначению",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-071",
+      "requirement": "Возвращённая память или top-k не должны подменять полноту оригинального корпуса",
+      "criticality": "P0",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Переход от проекции к source revision и locator",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_thousand_sources_inventory_is_complete_but_not_a_reading_claim"
+      ],
+      "qualification_limits": "Проверен полный учёт 1001 входа; выдача плана не считается чтением корпуса. Смысловой поиск не включён этой серией."
+    },
+    {
+      "id": "SP-072",
+      "requirement": "Модельный вход должен включать обязательные правила, цель и замыкание выбранных зависимостей",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Компилятор адресного контекста с preflight",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_real_native_signed_envelope_contains_addressed_input",
+        "test_stripping_intake_from_the_signed_input_is_denied",
+        "test_sqlite_rows_include_complete_schema_and_table_schema",
+        "test_partition_cannot_silently_drop_a_required_table_schema",
+        "test_next_method_receives_prior_product_and_original_evidence_once",
+        "test_pdf_evidence_and_image_citation_pass_through_native_execution",
+        "test_SQLite_structural_closure_survives_role_phase_mapping",
+        "test_native_transient_visual_loss_reproduced_then_retained_without_new_read_credit",
+        "test_visual_overflow_requires_split_and_does_not_trim_or_create_receipts"
+      ],
+      "qualification_limits": "Структурное замыкание и удержание изображений проверены; отдельные настоящие чтения и продолжения подтверждены. Произвольные корпуса и объёмы не приняты."
+    },
+    {
+      "id": "SP-073",
+      "requirement": "Переполнение обязательного контекста должно вызывать разбиение, а не тихое отсечение",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Планировщик частей и контроль объёма",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_lifecycle_hook_failure_cannot_authorize_model_execution",
+        "test_context_overflow_requires_split_without_trimming",
+        "test_whole_request_bound_rejects_instead_of_trimming_document"
+      ],
+      "qualification_limits": "Неусечение и отказ при переполнении включая полный нативный запрос подтверждены; автоматический планировщик разбиения ещё не реализован."
+    },
+    {
+      "id": "SP-074",
+      "requirement": "Полный каталог не должен загружаться в системный промпт без предметной необходимости",
+      "criticality": "P1",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Адресная загрузка выбранных карточек и зависимостей",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-075",
+      "requirement": "Материалы intake не должны самопроизвольно менять SOUL или глубокую идентичность агента",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Разделённое управление идентичностью и данные как данные",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_real_native_signed_envelope_contains_addressed_input"
+      ],
+      "qualification_limits": "Системное поле instructions сохранено; рабочие SOUL/конфигурация неизменны по контрольной фиксации."
+    },
+    {
+      "id": "SP-076",
+      "requirement": "Обновление производных индексов должно иметь проверяемое состояние без ложной общей транзакционности",
+      "criticality": "P0",
+      "implementation_increment": "A3",
+      "proposed_mechanism": "Outbox/receipt существующей памяти и повтор безопасной проекции",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-077",
+      "requirement": "Экспозиция должна адресоваться конкретной потребности из Hermes, UDR либо GSD",
+      "criticality": "P1",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "ExpositionRequest с целью и scope",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_native_grant_receives_complete_addressed_intake_with_unchanged_profile",
+        "test_no_planned_role_cannot_silently_get_parent_intake"
+      ],
+      "qualification_limits": "Назначение связано с экспозицией и нативной ролью. Настоящий BaseWork испытан; весь набор входов UDR/GSD ещё не принят."
+    },
+    {
+      "id": "SP-078",
+      "requirement": "Дочерние права должны быть не шире пересечения разрешений родителя и профиля",
+      "criticality": "P0",
+      "implementation_increment": "A3",
+      "proposed_mechanism": "Действующий subagent admission с областью",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_unassigned_original_is_rejected_after_native_assignment_before_executor",
+        "test_assigned_child_read_uses_existing_native_RPC_and_primary_store",
+        "test_revoked_extra_native_source_closes_result_even_outside_intake_exposition",
+        "test_G_holdout_source_rights_are_not_broadened_by_phase_mapping",
+        "test_unassigned_document_does_not_launch_even_with_correct_phase",
+        "test_visuals_stop_after_source_revocation_or_owner_off"
+      ],
+      "qualification_limits": "Роль, назначение, исходные права и отзыв проверены на записях и документах. Все виды ресурсов не приняты."
+    },
+    {
+      "id": "SP-079",
+      "requirement": "Дочерние обязательства должны сохранять существенные требования родителя и роли",
+      "criticality": "P0",
+      "implementation_increment": "A3",
+      "proposed_mechanism": "Компиляция role contract и HandoffBundle",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_real_grant_inherits_exact_profile_obligations_once",
+        "test_profile_product_cannot_omit_or_duplicate_required_checks",
+        "test_empty_result_gate_blocks_before_native_action_reservation"
+      ],
+      "qualification_limits": "Наследование обязательств и запрет приёмки без фактических результатов проверены. Человеческая приёмка не требуется; автономные результаты учитываются отдельно."
+    },
+    {
+      "id": "SP-080",
+      "requirement": "Ребёнок должен получать ограниченную экспозицию либо передавать новую потребность родителю",
+      "criticality": "P0",
+      "implementation_increment": "A3",
+      "proposed_mechanism": "Scope-limited exposition и typed request",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_native_grant_receives_complete_addressed_intake_with_unchanged_profile",
+        "test_missing_native_product_cannot_be_read_as_a_completed_result"
+      ],
+      "qualification_limits": "Подлинная ограниченная передача испытана. Полный распределённый планировщик потребностей ещё отсутствует."
+    },
+    {
+      "id": "SP-081",
+      "requirement": "Система не должна создавать циклический вызов intake → GSD/UDR → тот же intake без новой цели",
+      "criticality": "P0",
+      "implementation_increment": "A3",
+      "proposed_mechanism": "Причинная цепь запросов, назначение и проверка прогресса",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_completed_application_does_not_silently_rerun_the_same_purpose",
+        "test_subject_cycle_does_not_create_recursive_execution"
+      ],
+      "qualification_limits": "Предметный цикл не запускает новый вызов; повтор завершённой цели закрыт. Полный маршрут через настоящие GSD/UDR ещё не испытан."
+    },
+    {
+      "id": "SP-082",
+      "requirement": "Все G, S, D, GS, GD, SD и GSD должны получать соответствующие роли и типизированные входы",
+      "criticality": "P0",
+      "implementation_increment": "A3",
+      "proposed_mechanism": "Адаптер существующего движка GSD",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_GSD_role_cannot_be_relabelled_as_an_ordinary_analyst",
+        "test_gsd_reader_preserves_canonical_origin_and_new_session_rights",
+        "test_gsd_reader_rejects_foreign_role_or_parent"
+      ],
+      "qualification_limits": "Семь сочетаний проверены настоящими каноническими ролями на Standard; D/GD дополнительно различают ожидание обзора и продолжение с обзором. Все процедуры и высокие профили не приняты."
+    },
+    {
+      "id": "SP-083",
+      "requirement": "UDR/Foundation должен получать ссылки на согласованную версию основы intake",
+      "criticality": "P0",
+      "implementation_increment": "A3",
+      "proposed_mechanism": "Версионированный bridge к Research/Foundation",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_research_basis_uses_existing_native_work_and_idempotent_Foundation_reference",
+        "test_research_basis_rechecks_revoked_source_before_write_and_read",
+        "test_research_handoff_requires_saved_Foundation_basis_before_planning",
+        "test_Foundation_envelope_preserves_float_geometry_exactly",
+        "test_Foundation_exact_encoding_rejects_numeric_change_noncanonical_and_nonfinite",
+        "test_old_V1_basis_is_read_without_invented_migration"
+      ],
+      "qualification_limits": "Основа V2 сохраняет точное представление PDF; действительные V1 читаются. Настоящий Dolt и продолжение проверены отдельно."
+    },
+    {
+      "id": "SP-084",
+      "requirement": "Задачи intake и детей должны входить в единый действующий Beads-граф работы",
+      "criticality": "P1",
+      "implementation_increment": "A3",
+      "proposed_mechanism": "Адаптер существующего реестра задач",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_actual_Beads_work_binding_dependency_and_idempotency"
+      ],
+      "qualification_limits": "Настоящие Beads 1.3.1: один основной граф, блокировка/готовность, повтор; два настоящих дочерних задания закрыты в том же графе."
+    },
+    {
+      "id": "SP-085",
+      "requirement": "Переход между участниками должен передавать доказуемо нужные версии, а не весь диалог",
+      "criticality": "P0",
+      "implementation_increment": "A3",
+      "proposed_mechanism": "Handoff compiler с refs и обязательными частями",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_native_grant_receives_complete_addressed_intake_with_unchanged_profile",
+        "test_unrelated_parent_revision_does_not_invalidate_an_assigned_source"
+      ],
+      "qualification_limits": "Передаются адресные версии и ограничения; несвязанная ревизия не меняет основу. Родительские производные источники закрыты до отдельного адаптера."
+    },
+    {
+      "id": "SP-086",
+      "requirement": "Отсутствие реального исполнителя должно оставлять проверку неисполненной",
+      "criticality": "P0",
+      "implementation_increment": "A3",
+      "proposed_mechanism": "Проверка admission и квитанций запуска",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_missing_native_product_cannot_be_read_as_a_completed_result",
+        "test_native_result_still_requires_its_exact_history_and_terminal_receipt",
+        "test_gsd_reader_does_not_turn_missing_executor_into_success"
+      ],
+      "qualification_limits": "Нет исполнителя или нарушена квитанция: успех не выдаётся. Настоящие ограниченные BaseWork, UDR и GSD подтверждены отдельно; научная приёмка не приписывается."
+    },
+    {
+      "id": "SP-087",
+      "requirement": "Сбой одного подключённого модуля должен закрывать только зависимый путь",
+      "criticality": "P0",
+      "implementation_increment": "A3",
+      "proposed_mechanism": "Граф зависимостей и предметный статус",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_off_survives_missing_delegation_journal_and_keeps_native_launch_control"
+      ],
+      "qualification_limits": "Выключенный intake не требует своего журнала для обычного запуска. BaseWork при GSD/UDR off проверен; все восемь сочетаний ещё не квалифицированы."
+    },
+    {
+      "id": "SP-088",
+      "requirement": "Субагент не должен обходить запрет опроса или источника через другого исполнителя",
+      "criticality": "P0",
+      "implementation_increment": "A3",
+      "proposed_mechanism": "Наследуемые политики и проверка перед делегированием",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-089",
+      "requirement": "Продолжение через неопределённый срок должно восстанавливать сохранённые обязательства и версии",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Устойчивое Work state и контрольная точка",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_new_adapter_reads_the_same_persistent_child_binding",
+        "test_new_session_reads_durable_result_with_its_own_current_source_rights"
+      ],
+      "qualification_limits": "Готовые результаты читаются в новой сессии той же работы. Живой дескриптор после перезапуска не подменяется повторным запуском."
+    },
+    {
+      "id": "SP-090",
+      "requirement": "Неизвестный исход защищённого действия должен проверяться до его повтора",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Operation ID, receipt и reconciliation",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_unknown_outcome_is_preserved_and_cannot_trigger_another_callback",
+        "test_new_session_cannot_reset_an_unknown_outcome_of_the_same_work",
+        "test_known_provider_rejection_does_not_become_unknown_spend_or_block_repair"
+      ],
+      "qualification_limits": "Неизвестный исход не сбрасывается новым ID или новой сессией той же работы. Явный отказ отделён; неизвестное потребление не объявляется нулевым."
+    },
+    {
+      "id": "SP-091",
+      "requirement": "Идемпотентность должна учитывать цель и основу экспозиции",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Ключ work/scope/purpose/input revisions/operation version",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_same_id_and_input_replay_does_not_create_second_revision",
+        "test_new_ids_do_not_evade_exact_purpose_input_repeat_detection",
+        "test_new_purpose_on_the_same_material_creates_new_exposition",
+        "test_cached_question_cannot_bypass_later_owner_stop"
+      ],
+      "qualification_limits": "Идемпотентность экспозиции и актуальная проверка вопроса; внешние эффекты не запускаются."
+    },
+    {
+      "id": "SP-092",
+      "requirement": "Изменение источника должно инвалидировать только реально зависимые продукты",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Dependency closure по версиям, без глобального аннулирования",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_unrelated_parent_revision_does_not_invalidate_an_assigned_source",
+        "test_revoked_extra_native_source_closes_result_even_outside_intake_exposition"
+      ],
+      "qualification_limits": "Несвязанная ревизия не закрывает назначение; отзыв любого назначенного нативного источника закрывает зависимое чтение."
+    },
+    {
+      "id": "SP-093",
+      "requirement": "Фиксация результата не должна закрывать приём новых вводных",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Новая версия и связь supersedes без перезаписи",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_next_method_receives_prior_product_and_original_evidence_once"
+      ],
+      "qualification_limits": "После продукта возможен следующий проход с новой целью и точной зависимостью; прежний результат сохраняется."
+    },
+    {
+      "id": "SP-094",
+      "requirement": "Повторная экспозиция должна сохранять прежний продукт и назначение новой версии",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Append-only revisions с причиной",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_next_method_receives_prior_product_and_original_evidence_once",
+        "test_completed_application_does_not_silently_rerun_the_same_purpose"
+      ],
+      "qualification_limits": "Версии продуктов и первичные основания передаются без повторного зачёта независимости источников."
+    },
+    {
+      "id": "SP-095",
+      "requirement": "Отмена должна прекращать новые зависимые действия и сохранять уже совершённые эффекты",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Cancellation token и reconciliation текущих операций",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_saved_product_remains_readable_after_stopping_new_work"
+      ],
+      "qualification_limits": "Готовый продукт доступен после off/паузы/отмены при сохранённом допуске к источникам; новые действия закрыты штатной проверкой состояния."
+    },
+    {
+      "id": "SP-096",
+      "requirement": "Восстановление работы не должно продлевать поколение GSD или сбрасывать его расходы",
+      "criticality": "P0",
+      "implementation_increment": "A3",
+      "proposed_mechanism": "Раздельные lifecycle работы и поколения исполнителя",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_changed_foundation_unknown_outcome_rejects_old_restore",
+        "test_gsd_pending_job_cannot_enter_a_recoverable_snapshot",
+        "test_gsd_unsettled_anchor_intent_is_not_silently_repaired"
+      ],
+      "qualification_limits": "Восстановление не запускает исполнителей и не меняет срок/расход GSD. Отдельный штатный resume отклонил истёкшую учебную семью после восстановления; неизвестная стоимость сохранена. Не означает приёмки всех видов восстановления."
+    },
+    {
+      "id": "SP-097",
+      "requirement": "Дочерние расходы и резервы должны учитываться в общем действующем ресурсе",
+      "criticality": "P0",
+      "implementation_increment": "A3",
+      "proposed_mechanism": "Существующий accounting, без скрытого второго бюджета intake",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-098",
+      "requirement": "Приблизительный подсчёт токенов должен оставаться отличимым от точного",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Явный источник и качество измерения",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_real_middleware_product_provenance_and_addressed_read",
+        "test_known_provider_rejection_does_not_become_unknown_spend_or_block_repair"
+      ],
+      "qualification_limits": "Поля usage сохраняют происхождение, ноль и неизвестное различены. Точного входного счётчика поставщика нет."
+    },
+    {
+      "id": "SP-099",
+      "requirement": "Повтор работы должен иметь обоснование прироста знания либо восстановления",
+      "criticality": "P1",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Журнал попыток и причин продолжения",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-100",
+      "requirement": "Все состояния до и после значимого пересмотра должны быть воспроизводимы по версиям",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Иммутабельные revisions и журнал событий",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_optional_snapshot_restores_work_without_rewinding_foundation",
+        "test_sqlite_layout_is_not_confused_with_changed_history",
+        "test_gsd_trust_key_must_retain_owner_only_permissions",
+        "test_nested_supplier_source_is_checked_before_import"
+      ],
+      "qualification_limits": "Согласованный снимок остановленного управляемого профиля включает собственные UDR/Foundation/Dolt, GSD и проекты. Потеря диска, внешние проекции и перенос не квалифицированы."
+    },
+    {
+      "id": "SP-101",
+      "requirement": "Любое защищённое действие должно проверяться в доверенном слое до эффекта",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Действующий tool/launch/controller admission",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_assigned_child_read_uses_existing_native_RPC_and_primary_store",
+        "test_mandatory_native_launch_controller_is_not_replaced_by_the_handoff",
+        "test_missing_visual_is_rejected_at_real_intake_final_control_before_native_executor"
+      ],
+      "qualification_limits": "Настоящие локальные границы и отдельные CLI/дети подтверждены; изъятие изображения блокирует зависимый путь. Шлюз не проверен."
+    },
+    {
+      "id": "SP-102",
+      "requirement": "Сбой обязательного контроля должен закрывать зависимое действие",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Fail-closed зависимого пути",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_missing_required_common_controller_is_not_replaced_by_intake",
+        "test_off_path_survives_failure_of_optional_receipt_table"
+      ],
+      "qualification_limits": "Обязательный отказ закрывает зависимый путь; выключенный путь не требует журнала intake."
+    },
+    {
+      "id": "SP-103",
+      "requirement": "Наблюдающий hook не должен заменять предварительное разрешение",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Разделение lifecycle telemetry и blocking admission",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_lifecycle_hook_failure_cannot_authorize_model_execution"
+      ],
+      "qualification_limits": "Отказ наблюдающего hook не подменяет блокирующий конечный контроль."
+    },
+    {
+      "id": "SP-104",
+      "requirement": "Интерфейс intake_work должен иметь отдельные строгие схемы действий",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Tagged union prepare/expose/revise/assess/handoff/status/history/pause/resume/cancel",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_real_registry_dispatch_and_result_controller",
+        "test_extra_fields_bool_revision_and_unknown_action_are_rejected"
+      ],
+      "qualification_limits": "Схемы и нативный реестр проверены. Поставщик не вызывался с этими схемами."
+    },
+    {
+      "id": "SP-105",
+      "requirement": "Интерфейс intake_methods должен допускать локальную методическую карточку без исполняемого кода",
+      "criticality": "P0",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Безопасный descriptor и адресное чтение",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_addressed_catalogue_is_open_and_does_not_return_all_cards"
+      ],
+      "qualification_limits": "Адресный каталог и локальные подходы; смысловая релевантность выбора ещё не принята."
+    },
+    {
+      "id": "SP-106",
+      "requirement": "Интерфейс вопросов должен учитывать действующего пользователя и сохранённые ограничения",
+      "criticality": "P0",
+      "implementation_increment": "A3",
+      "proposed_mechanism": "Аутентифицированный root dialogue и Question policy",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_owner_command_uses_real_native_session_identity_and_denies_other_gateway_user",
+        "test_model_tool_cannot_resume_or_raise_interview_limits"
+      ],
+      "qualification_limits": "Реальная профильная аутентификация команды. Telegram API, отправка и получение вопроса не проверялись."
+    },
+    {
+      "id": "SP-107",
+      "requirement": "Интерфейсы не должны добавлять произвольные SQL, shell или путь за пределами разрешённой области",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Проверка scope и делегирование существующим допустимым инструментам",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_operator_paths_reject_traversal_symlink_and_missing_stop_attestation"
+      ],
+      "qualification_limits": "Операторские пути ограничены выбранной областью; модельные схемы не добавляют SQL/shell. Полный аудит всех внешних инструментов не заявляется."
+    },
+    {
+      "id": "SP-108",
+      "requirement": "Диагностика должна показывать предметную причину отказа без раскрытия секретов",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Типизированные ошибки и действующая очистка чувствительных полей",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_control_reason_is_redacted_without_losing_the_error_type"
+      ],
+      "qualification_limits": "Нативное удаление чувствительных значений в новых отказах. Полный аудит всех диагностик не заявляется."
+    },
+    {
+      "id": "SP-109",
+      "requirement": "После содержательного шага статус должен сообщать установленное, неопределённое и следующий шаг",
+      "criticality": "P1",
+      "implementation_increment": "A3",
+      "proposed_mechanism": "Progress renderer по результатам, не по каждому внутреннему вызову",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-110",
+      "requirement": "Подготовка файла, отправка, подтверждение API и получение пользователем должны иметь разные состояния",
+      "criticality": "P0",
+      "implementation_increment": "A3",
+      "proposed_mechanism": "Действующая защищённая доставка и receipts",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-111",
+      "requirement": "Требования, ожидаемые исходы и критерии должны быть зафиксированы до функциональных испытаний",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Матрица источник → требование → механизм → продукт → проверка",
+      "implementation_status": "baseline_spec_preserved",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Исходный нормативный реестр зафиксирован до разработки; полный исполняемый план 64 групп ещё не реализован."
+    },
+    {
+      "id": "SP-112",
+      "requirement": "Приёмка должна включать реальные CLI, gateway и дочерние вызовы, а не только схему",
+      "criticality": "P0",
+      "implementation_increment": "A3",
+      "proposed_mechanism": "Исполняемые сценарии с квитанциями и артефактами",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-113",
+      "requirement": "Приёмка должна покрывать шесть профилей и все восемь состояний трёх модулей",
+      "criticality": "P0",
+      "implementation_increment": "A3",
+      "proposed_mechanism": "Эквивалентностные классы и риск-ориентированная матрица",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_real_grant_inherits_exact_profile_obligations_once",
+        "test_prepared_only_high_profile_requires_actual_output_evidence"
+      ],
+      "qualification_limits": "Шесть профилей проверяются отдельно от восьми сочетаний модулей. Полное исполнение обязательств и всех сочетаний на всех модулях не заявляется."
+    },
+    {
+      "id": "SP-114",
+      "requirement": "Каталожная проверка всех карточек не должна выдаваться за испытание всех методик",
+      "criticality": "P0",
+      "implementation_increment": "A2",
+      "proposed_mechanism": "Раздельные проверки справочника, приложения и предметного результата",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_addressed_catalogue_is_open_and_does_not_return_all_cards"
+      ],
+      "qualification_limits": "Проверяется адресный справочник; эмпирическая проверка 150 методик не заявляется."
+    },
+    {
+      "id": "SP-115",
+      "requirement": "Негативные и граничные испытания должны подтверждать отсутствие запрещённых эффектов",
+      "criticality": "P0",
+      "implementation_increment": "A3",
+      "proposed_mechanism": "Контролируемые ошибки, большие входы, неизвестные исходы",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    },
+    {
+      "id": "SP-116",
+      "requirement": "Модуль должен выпускаться отдельно от подписанных Research/Foundation и ядра Hermes",
+      "criticality": "P0",
+      "implementation_increment": "A3",
+      "proposed_mechanism": "Версионированный адаптер с матрицей совместимости",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_install_rejects_incompatible_supplier_before_any_mutation",
+        "test_native_version_hash_mismatch_closes_install_before_snapshot",
+        "test_changed_settings_are_rejected_before_native_Host_construction"
+      ],
+      "qualification_limits": "Отдельный wheel и установка в новых процессах проверены; SDK не редактируется. Будущие версии требуют квалификации."
+    },
+    {
+      "id": "SP-117",
+      "requirement": "Обновление должно сохранять совместимость незавершённых работ либо отказывать до миграции",
+      "criticality": "P0",
+      "implementation_increment": "A3",
+      "proposed_mechanism": "Явная версия схемы, backup и проверка перехода",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_additive_install_preserves_existing_work_and_authenticated_binding",
+        "test_unknown_schema_refuses_install_without_mutating_settings"
+      ],
+      "qualification_limits": "Добавочная миграция сохраняет существующее состояние; неизвестная версия отклоняется до изменения. Не все обновления поставщика приняты."
+    },
+    {
+      "id": "SP-118",
+      "requirement": "Откат и отключение должны сохранять оригиналы, версии, ограничения и историю расходов",
+      "criticality": "P0",
+      "implementation_increment": "A3",
+      "proposed_mechanism": "Обратимая активация и forward-only сохранённые данные",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_snapshot_restore_recovers_revision_and_retains_later_user_files",
+        "test_corrupt_snapshot_is_rejected_before_live_files_are_replaced",
+        "test_snapshot_cannot_rewind_a_later_owner_off",
+        "test_snapshot_cannot_rewind_later_accounting_or_effect_evidence",
+        "test_later_source_policy_cannot_be_rolled_back",
+        "test_operator_loader_off_cannot_be_rolled_back",
+        "test_writer_lock_is_the_same_inode_after_restore",
+        "test_current_symlink_refuses_before_any_files_are_moved"
+      ],
+      "qualification_limits": "На прежних путях восстановлены результаты UDR/GSD; расходы, сроки, права и решения владельца не откатываются. Другие пути, потеря диска и identity не приняты."
+    },
+    {
+      "id": "SP-119",
+      "requirement": "Переносимый комплект должен разделять проектные механизмы и пользовательские секреты/данные",
+      "criticality": "P0",
+      "implementation_increment": "A3",
+      "proposed_mechanism": "Нейтральные примеры, явный manifest и отдельное хранилище секретов",
+      "implementation_status": "partial_component_implemented_and_locally_tested",
+      "full_requirement_verified": false,
+      "component_test_names": [
+        "test_additive_install_preserves_existing_work_and_authenticated_binding",
+        "test_running_profile_lock_blocks_operator_configuration_change"
+      ],
+      "qualification_limits": "Нейтральный wheel и отдельный приватный снимок разделены. Полное переносимое окружение Hermes не включено."
+    },
+    {
+      "id": "SP-120",
+      "requirement": "Отсутствующие нормативные источники Meta Framework должны оставаться явной границей соответствия",
+      "criticality": "P0",
+      "implementation_increment": "A1",
+      "proposed_mechanism": "Реестр отсутствующих документов без достраивания",
+      "implementation_status": "not_started",
+      "full_requirement_verified": false,
+      "component_test_names": [],
+      "qualification_limits": "Остаётся к реализации и соответствующей приёмке."
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.test-state/
+.test-output/
+build/
+.env
+.env.*
+auth.json
+*.sqlite*
+_snapshots/
+_retained/
+local-config.json

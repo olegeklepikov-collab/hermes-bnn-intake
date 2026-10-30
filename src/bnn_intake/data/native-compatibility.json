@@ -1,0 +1,28 @@
+{
+  "contract": "BNNIntakeNativeCompatibilityV1",
+  "memory_version": "2.0.0-dev.43",
+  "core_git_commit": "d923a5eb487a17c0a68801bba9ef0f56c81040a8",
+  "memory_files": {
+    "manifest.json": "02ab21fcc356e6ec9f10bffaff01345f387b0fcf4d78c49c7e90d6dd3434d91f",
+    "release.json": "47b732d7c1a332614688ab9bbb6f6d1828510b3bcd7d0cd856113714e2953d8d",
+    "bn_memory/plugin.py": "0a873eb2897c4b08af0a24e0717df860ec71b890c8dd85228f93bb59f015ee96"
+  },
+  "core_files": {
+    "hermes_cli/plugins.py": "9ab340f73bc920ed46edbd0d942bb197df59887430473019a5050df606b2c1f3",
+    "hermes_cli/middleware.py": "988de6167eacbf117de73cd7fe4eeb60b6aa7adb534d2068c8940e14823cff71",
+    "hermes_cli/plugins_discovery.py": "8267c86ea941ebb1fc67702f76c4c8c371cb24c41704b442c102931d9f7be3e1",
+    "hermes_cli/plugins_manifest.py": "ae68abd4038925a3d50ec166e57b88bd1d536192b815f2efb33ebf2976d05275",
+    "agent/tool_attempt.py": "ea0d202a175aa28bbbcb4bd8529e38cc88e1f2ab6782719bc57e1d8ddd6e7858",
+    "agent/tool_executor.py": "95b8563a036261220ab88a78e7f17415d9c8d2521bff739915fc532ddde089c5",
+    "agent/message_sanitization.py": "4dd904f9a69376fc8801f47b49f829869d5ef49d6bccd0a73d82af84e8f580c5",
+    "tools/tool_search.py": "ad4405f1e3c4c4e9a92635f7c3c1f882acdd10a11d072658b74787f125b76e5c",
+    "tools/tool_search_validation.py": "e0a97b3ecc53a1e3fc4c9e8a5f88a211976b2e8ba808b81a6295273a04ad890c",
+    "model_tools.py": "65ce1630ef3996a6dad4e2b3aeffb75880163e8c09f6afedc2182304001b5d48",
+    "hermes_constants.py": "8d55a41452b625061f1f2e2f507a7e7ffb2a396e711afcc7aee28b03a6e8fa9d",
+    "hermes_cli/runtime_provider.py": "44d2b73d5136cdaaa9bfeb4763b36a137ed74efcaf01f11c43a6f263d4e8cb19",
+    "agent/agent_init.py": "9f8c91db2ae36194dcd0e187d8ef237fd8337ef35b8f4eb22b4faf6cf6575187",
+    "agent/subagent_lifecycle.py": "94961282ce1f8170d8e9d6a6981511d4497ed0e9369bf1253a6355555693f823",
+    "tools/delegate_tool_config.py": "a0360af946ad929fac017d5299438c400f48ebe5e82edb0c8cd2e38d8d170dcb",
+    "tools/delegate_tool.py": "dffa3a491b4b774d6639bae21913a684d2e504a01e045605b33cbe5b13c8ab35"
+  }
+}

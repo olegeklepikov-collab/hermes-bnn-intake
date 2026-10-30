@@ -1,0 +1,90 @@
+--- a/Development/connection_check.py
++++ b/Development/connection_check.py
+@@ -1,3 +1,5 @@
+ """Fixed local MCP handshake and rejection check; never a model or gateway launcher."""
++
++import yaml
+ import asyncio
+ import json
+@@ -14,5 +16,5 @@
+     config=json.loads((ROOT/'Memory/settings.json').read_text())
+     assert Path(config['package_root']).resolve().is_relative_to(ROOT/'Memory/releases')
+-    profile=json.loads((ROOT/'data/config.yaml').read_text())
++    profile=yaml.safe_load((ROOT/'data/config.yaml').read_text())
+     server=profile['mcp_servers']['context']
+     assert server['command']==str(ROOT/'hermes-agent/venv/bin/python')
+--- a/Development/qualified_source_check.py
++++ b/Development/qualified_source_check.py
+@@ -1,3 +1,5 @@
+ """Actual configured BNN hooks/native boundary/MCP source search and reread."""
++
++import yaml
+ import asyncio,json,os,uuid
+ from pathlib import Path
+@@ -11,5 +13,5 @@
+  from hermes_cli.middleware import run_tool_execution_middleware,apply_llm_request_middleware
+  manager=get_plugin_manager();manager.discover_and_load()
+- profile=json.loads((N/'data/config.yaml').read_text());server=profile['mcp_servers']['context']
++ profile=yaml.safe_load((N/'data/config.yaml').read_text());server=profile['mcp_servers']['context']
+  config=json.loads((N/'Memory/settings.json').read_text())
+  assert config.get('semantic_context',False) is False,'source-check is a local-only probe'
+--- a/Development/qualified_embedding_check.py
++++ b/Development/qualified_embedding_check.py
+@@ -1,3 +1,5 @@
+ """Native BNN/MCP -> primary -> real Voyage -> native Zvec -> native recall, fixed synthetic inputs."""
++
++import yaml
+ import asyncio,json,os,uuid
+ from pathlib import Path
+@@ -17,5 +19,5 @@
+     identity={'session_id':sid,'turn_id':turn,'platform':'cli','task_id':'embedding-qualification'}
+     manager.invoke_hook('pre_llm_call',user_message='Synthetic embedding check only',**identity)
+-    server=json.loads((N/'data/config.yaml').read_text())['mcp_servers']['context']
++    server=yaml.safe_load((N/'data/config.yaml').read_text())['mcp_servers']['context']
+     async def rpc(name,args):
+         env={k:v for k,v in os.environ.items() if k in {'HOME','PATH','TMPDIR','LANG'}};env.update(server['env'])
+--- a/Development/w2_generation.py
++++ b/Development/w2_generation.py
+@@ -1,3 +1,5 @@
+ """Actual application checks, through BNN's native parent/leaf controllers."""
++
++import yaml
+ import json,os,subprocess,time,uuid
+ from contextlib import ExitStack
+@@ -40,5 +42,5 @@
+     record=host.store.record(sid,{'content':text,'source_ref':'evidence:projection-retraction-repair' if lesson_only else 'synthetic:w2-cognee','kind':'source','scope':'task','request_id':'w2-cognee-lesson-source' if lesson_only else 'w2-cognee-source'})
+     manager.invoke_hook('pre_llm_call',user_message='Synthetic Cognee application qualification, source-backed and unreviewed',**identity)
+-    server=json.loads((N/'data/config.yaml').read_text())['mcp_servers']['context']
++    server=yaml.safe_load((N/'data/config.yaml').read_text())['mcp_servers']['context']
+     async def rpc(name,args):
+         env={k:v for k,v in os.environ.items() if k in {'HOME','PATH','TMPDIR','LANG'}};env.update(server['env'])
+--- a/Development/w2_native.py
++++ b/Development/w2_native.py
+@@ -1,3 +1,5 @@
+ """Actual advertised MCP/tool controllers, exact projection recovery, files and code."""
++
++import yaml
+ import asyncio,json,os,uuid
+ from pathlib import Path
+@@ -17,5 +19,5 @@
+     other=N/'UDR/workspace/w2-cross-project';other.mkdir(exist_ok=True);(other/'source.md').write_text('Synthetic cross-project source: before 20, after 30; cause unknown.\n')
+     manager.invoke_hook('pre_llm_call',user_message='Actual W2 tool integration and recovery qualification',**identity)
+-    server=json.loads((N/'data/config.yaml').read_text())['mcp_servers']['context'];results={}
++    server=yaml.safe_load((N/'data/config.yaml').read_text())['mcp_servers']['context'];results={}
+     async def rpc(name,args):
+         env={k:v for k,v in os.environ.items() if k in {'HOME','PATH','TMPDIR','LANG'}};env.update(server['env'])
+--- a/Development/w4_gateway.py
++++ b/Development/w4_gateway.py
+@@ -1,3 +1,5 @@
+ """Native gateway entry for the independent BNN home; no force/replace/foreign profile."""
++
++import yaml
+ import asyncio,json,os,signal
+ from pathlib import Path
+@@ -5,5 +7,5 @@
+ 
+ def configure():
+-    path=N/'data/config.yaml';cfg=json.loads(path.read_text());before=json.dumps(cfg,sort_keys=True)
++    path=N/'data/config.yaml';cfg=yaml.safe_load(path.read_text());before=json.dumps(cfg,sort_keys=True)
+     cfg.setdefault('gateway',{}).update(multiplex_profiles=False,standalone=True)
+     cfg.setdefault('platform_toolsets',{})['telegram']=['context','bnn_modules','skills']

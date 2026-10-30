@@ -1,0 +1,1 @@
+Ignored authentication input for temporary synthetic localhost Neo4j only. No account or credential.
