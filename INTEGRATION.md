@@ -1,4 +1,8 @@
-# Интеграция Hermes BNN Intake 0.14.2
+Текущая пара: **Memory 2.0.0-dev.45 + Intake 0.14.4**. Для полной установки сначала примените исправление 20261101 из [hermes-bnn-full](https://github.com/olegeklepikov-collab/hermes-bnn-full). Новое исправление прошло 14 адресных и 101 существующий сценарий; на рабочем варианте подтверждена настоящая Telegram-цепочка. Проверки прежнего полного состава не объявляются новым полным прогоном.
+
+> В полном комплекте установка Intake уже выполняется `install.sh`. Ниже отдельные операции сопровождения; сначала читайте [полную инструкцию платформы](../docs/INSTALL_MACOS.md). Повторно устанавливать поверх подключённой библиотеки не требуется.
+
+# Интеграция Hermes BNN Intake 0.14.4
 
 ## 1. Область установки
 
@@ -6,7 +10,7 @@
 
 Состав: исходный код, wheel, проверяющий установщик, точные схемы инструментов, каталог методов, тесты, манифесты, небольшой патч старых средств обслуживания и эта инструкция. Базы, исследовательские корпуса, учётные данные, личность, архивы старого владельца и внешние программы отсутствуют.
 
-Связанные проекты: [публичная поставка Hermes BN](https://github.com/olegeklepikov-collab/hermes-bn-gsd-udr-public), [Hermes UDR](https://github.com/olegeklepikov-collab/hermes-udr). Эти ссылки не означают, что любой их выпуск автоматически совместим с Intake 0.14.2. Сначала сопоставьте точные версии и контрольные суммы.
+Связанные проекты: [публичная поставка Hermes BN](https://github.com/olegeklepikov-collab/hermes-bn-gsd-udr-public), [Hermes UDR](https://github.com/olegeklepikov-collab/hermes-udr). Эти ссылки не означают, что любой их выпуск автоматически совместим с Intake 0.14.4. Сначала сопоставьте точные версии и контрольные суммы.
 
 ## 2. Необходимая основа
 
@@ -15,7 +19,7 @@
 | ОС | Квалификация выполнена на macOS Apple Silicon; другие ОС и архитектуры отдельно не приняты |
 | Python | Метаданные пакета требуют 3.11+; использовать собственную среду Python установленной Hermes, в которой доступны `jsonschema` и `PyYAML` |
 | Hermes | Commit `d923a5eb487a17c0a68801bba9ef0f56c81040a8` и точные закреплённые файлы интерфейсов |
-| Общая память | `2.0.0-dev.43`, существующий `bn_memory.Store`, основной `memory.sqlite`, настройки и собственный ключ подписи |
+| Общая память | `2.0.0-dev.45`, существующий `bn_memory.Store`, основной `memory.sqlite`, настройки и собственный ключ подписи |
 | Основная работа | Родная рабочая карточка и Beads; второй главный граф задач не создаётся |
 | Документы | Штатные `Documents`, изолированные исполнители разбора и среды нужных форматов, если требуется документарная работа |
 | GSD | Согласованный установленный SDK и нативные роли для маршрутов G/S/D; не нужен для простого отключения Intake |
@@ -26,26 +30,18 @@
 
 Владелец должен иметь собственные `profile_home`, `state_root`, `host_key`, проекты и подготовленные настройки общей памяти. Эти изменяемые пути и изменяемое состояние подключённых модулей должны находиться внутри выбранного управляемого корня. Ключи, данные или рабочие каталоги другого пользователя не подставляются.
 
-## 3. Получить и проверить комплект
+## 3. Получить и проверить именно полный комплект
 
-Открытый репозиторий:
+Эта редакция 0.14.4 поставляется внутри полной платформы Memory dev.44. Используйте полный выпуск `hermes-bnn-full` либо `hermes-bnn-full-private`, затем его `install.sh`. Отдельные репозитории `hermes-bnn-intake` версии 0.14.4 относятся к предшествующей основе dev.43 и не являются источником байтов этой парной редакции.
 
-```sh
-git clone https://github.com/olegeklepikov-collab/hermes-bnn-intake.git
-cd hermes-bnn-intake
-python3 tools/verify_package.py
-shasum -a 256 -c SHA256SUMS
-```
-
-Закрытый вариант: `https://github.com/olegeklepikov-collab/hermes-bnn-intake-private`; нужен разрешённый аккаунт GitHub. Обе поставки одинаковы по файлам и архиву.
-
-Для установки из архива распакуйте `archives/Hermes-Intake-0.14.2.zip` в новую папку, войдите в `Hermes-Intake-0.14.2` и выполните `python3 tools/verify_package.py`. Архив не включает свой собственный ZIP; файл `PAYLOAD-SHA256SUMS` проверяет распакованное содержимое. Внутри архива:
+После распаковки из полного архива исходный каталог находится в `Hermes-BNN-Full/Intake`. Для отдельной проверки из этого каталога:
 
 ```sh
+../Hermes/runtime/python/cpython-3.14.6-macos-aarch64-none/bin/python3.14 tools/verify_package.py
 shasum -a 256 -c PAYLOAD-SHA256SUMS
 ```
 
-Хеши обнаруживают изменение относительно сохранённого манифеста. Они не являются подписью внешнего поставщика. Исходное происхождение указано в `PROVENANCE.json`.
+Здесь нет отдельного отсутствующего ZIP Intake: он уже входит в полный архив. `PACKAGE-MANIFEST.json` и `packages/manifest.json` относятся к текущим файлам. Свидетельства предшествующей версии явно отделены в `provenance`. Хеши не являются внешней подписью; происхождение указано в `PROVENANCE.json`.
 
 ## 4. Задать собственные пути
 
@@ -57,10 +53,10 @@ HERMES_INTAKE_ROOT='/полный/путь/к/собственному/Hermes-BN
 HERMES_INTAKE_CONFIG="$HERMES_INTAKE_ROOT/Memory/settings.json"
 HERMES_INTAKE_PROFILE="$HERMES_INTAKE_ROOT/data"
 HERMES_INTAKE_CORE="$HERMES_INTAKE_ROOT/hermes-agent"
-HERMES_INTAKE_MEMORY="$HERMES_INTAKE_ROOT/Memory/releases/2.0.0-dev.43"
+HERMES_INTAKE_MEMORY="$HERMES_INTAKE_ROOT/Memory/releases/2.0.0-dev.45"
 HERMES_INTAKE_PYTHON="$HERMES_INTAKE_CORE/venv/bin/python"
-HERMES_INTAKE_LIB="$HERMES_INTAKE_ROOT/Intake/0.14.2"
-HERMES_INTAKE_WHEEL="$HERMES_INTAKE_REPO/packages/hermes_bnn_intake-0.14.2-py3-none-any.whl"
+HERMES_INTAKE_LIB="$HERMES_INTAKE_ROOT/Intake/0.14.4"
+HERMES_INTAKE_WHEEL="$HERMES_INTAKE_REPO/packages/hermes_bnn_intake-0.14.4-py3-none-any.whl"
 ```
 
 Если профиль или настройки лежат иначе, возьмите значения из своей установленной конфигурации. `HERMES_INTAKE_PROFILE` должен точно совпадать с её `profile_home`. Каталог библиотеки должен быть новым: установщик не затирает существующие файлы.
@@ -81,7 +77,7 @@ HERMES_INTAKE_WHEEL="$HERMES_INTAKE_REPO/packages/hermes_bnn_intake-0.14.2-py3-n
 Остановите только выбранный профиль и его исполнителей штатным средством вашей поставки. Для поставки с оболочкой BNN обычно:
 
 ```sh
-"$HERMES_INTAKE_ROOT/bin/hermes-bnn" w4 gateway-stop
+"$HERMES_INTAKE_ROOT/bin/hermes" gateway stop
 ```
 
 Для установки, управляемой штатной службой ядра, используется её собственный `gateway stop` с явным `HERMES_HOME`. Сначала убедитесь, что команда относится к выбранному профилю. Не используйте `--all`, принудительное завершение или чужие службы.
@@ -93,7 +89,7 @@ HERMES_INTAKE_WHEEL="$HERMES_INTAKE_REPO/packages/hermes_bnn_intake-0.14.2-py3-n
 Установщик работает без pip и не выполняет setup.py. Используйте фактический SHA-256 из `packages/manifest.json`:
 
 ```sh
-HERMES_INTAKE_WHEEL_SHA256='5cdf4d572c5992227e4f71899918c95b85d8b901ba9d9a3d546f03c1f9820ff6'
+HERMES_INTAKE_WHEEL_SHA256='7df170543e6f8acfcf2c275e9b31e44943f01871006ee36a1b92f8103807646f'
 mkdir -p "$HERMES_INTAKE_ROOT/Intake"
 "$HERMES_INTAKE_PYTHON" "$HERMES_INTAKE_REPO/packages/unpack.py" \
   --wheel "$HERMES_INTAKE_WHEEL" \
@@ -110,7 +106,7 @@ export PYTHONDONTWRITEBYTECODE=1
 "$HERMES_INTAKE_PYTHON" -c 'import bnn_intake; print(bnn_intake.__version__, bnn_intake.__file__)'
 ```
 
-Ожидаются `0.14.2` и путь внутри установленной библиотеки, без импорта из `src` другой копии.
+Ожидаются `0.14.4` и путь внутри установленной библиотеки, без импорта из `src` другой копии.
 
 ## 8. Подключить к существующему Host
 
@@ -146,7 +142,7 @@ PY
 Запустите только выбранный профиль штатной оболочкой. Для поставки BNN:
 
 ```sh
-"$HERMES_INTAKE_ROOT/bin/hermes-bnn" w4 gateway-start
+"$HERMES_INTAKE_ROOT/bin/hermes" gateway run
 ```
 
 Не выполняйте повторную настройку всех старых волн либо замену текущих SDK ради запуска расширения. В новом процессе проверьте обнаружение плагина:

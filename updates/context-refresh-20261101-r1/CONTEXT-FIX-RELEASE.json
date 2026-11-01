@@ -1,0 +1,102 @@
+{
+  "contract": "HermesBNNContextCorrectionV1",
+  "tag": "context-refresh-20261101-r1",
+  "Memory": "2.0.0-dev.45",
+  "Intake": "0.14.4",
+  "kind": "complete_base_plus_required_code_correction",
+  "base": {
+    "repository": "olegeklepikov-collab/hermes-bnn-full",
+    "tag": "full-20261031-intake-0.14.3",
+    "archive": {
+      "name": "Hermes-BNN-Full.tar.gz",
+      "bytes": 6233231783,
+      "sha256": "fe9cef77e74d47aaa6aae39974d716d0c7318b129cde162ec6cf933d4bab0189"
+    },
+    "parts": [
+      {
+        "name": "Hermes-BNN-Full-20261031-Intake-0.14.3.tar.gz.part001",
+        "bytes": 536870912,
+        "sha256": "476d0dd88837851a6fd37d3d45466c0a9d7f4ce985413908cd0537a619824546"
+      },
+      {
+        "name": "Hermes-BNN-Full-20261031-Intake-0.14.3.tar.gz.part002",
+        "bytes": 536870912,
+        "sha256": "fc812ef23c8356944d9375da1c9497a5bbf49e56d9ab85ae5f21d25f5b6c4a29"
+      },
+      {
+        "name": "Hermes-BNN-Full-20261031-Intake-0.14.3.tar.gz.part003",
+        "bytes": 536870912,
+        "sha256": "4b452198c426262d7a7047aa77216880373599f00f04116b637e69db836927f2"
+      },
+      {
+        "name": "Hermes-BNN-Full-20261031-Intake-0.14.3.tar.gz.part004",
+        "bytes": 536870912,
+        "sha256": "e9618ccf6ee52bac23650817a0433f9fd33ab330c495a362f8acd00875c3b47b"
+      },
+      {
+        "name": "Hermes-BNN-Full-20261031-Intake-0.14.3.tar.gz.part005",
+        "bytes": 536870912,
+        "sha256": "50b5b23767ecd0e01aed7e209111bda6e818a51c00f3c0ad4b88f1fd8ba420f6"
+      },
+      {
+        "name": "Hermes-BNN-Full-20261031-Intake-0.14.3.tar.gz.part006",
+        "bytes": 536870912,
+        "sha256": "7c08198c45fdd4b0609ee3e37a2da52a8dabe1430131b94bc3f6b879b7498823"
+      },
+      {
+        "name": "Hermes-BNN-Full-20261031-Intake-0.14.3.tar.gz.part007",
+        "bytes": 536870912,
+        "sha256": "7c144acc2eacb703cc6f2620d5124e43861ea061077400a894590209b8dfb5e2"
+      },
+      {
+        "name": "Hermes-BNN-Full-20261031-Intake-0.14.3.tar.gz.part008",
+        "bytes": 536870912,
+        "sha256": "bf88dbb17f3ebf1c404baf9a227334234f416267b0825cecb58291342c6b53f4"
+      },
+      {
+        "name": "Hermes-BNN-Full-20261031-Intake-0.14.3.tar.gz.part009",
+        "bytes": 536870912,
+        "sha256": "f8230637a1d682141e360fadfd61b37f6864274a3798def4aadb83ef3a32c300"
+      },
+      {
+        "name": "Hermes-BNN-Full-20261031-Intake-0.14.3.tar.gz.part010",
+        "bytes": 536870912,
+        "sha256": "7a6a5e3c6ba7197d0e5f1ebb03db16d5433f3423c967e94eb3f5cc8e3e150a24"
+      },
+      {
+        "name": "Hermes-BNN-Full-20261031-Intake-0.14.3.tar.gz.part011",
+        "bytes": 536870912,
+        "sha256": "30025c83486442db534da64d991e998eee1467b66e9226b7ebbac8faaa91c078"
+      },
+      {
+        "name": "Hermes-BNN-Full-20261031-Intake-0.14.3.tar.gz.part012",
+        "bytes": 327651751,
+        "sha256": "a44d744c55f918c3d8f025c20a7c04265e13f4d67a9754717d4d13498de35914"
+      }
+    ]
+  },
+  "correction": {
+    "name": "Hermes-BNN-context-refresh-20261101.zip",
+    "bytes": 20310545,
+    "sha256": "bc36f1efd1781151e708c8b24e4b4d19ac1a172ea316987d6cb66dbd44b78404"
+  },
+  "updated_bundle_manifest_sha256": "aee611575843aea5f47810be954ef0fe0c518921999db299765425fb6cf8dbae",
+  "qualification": {
+    "Memory": "2.0.0-dev.45",
+    "Intake": "0.14.4",
+    "new_regressions": 14,
+    "existing_related_regressions": 101,
+    "real_Telegram_input_and_file_cycle": true,
+    "portable_install_on_separate_restored_copy": true,
+    "five_required_controls_registered": true,
+    "complete_pristine_inventory_objects": 239255,
+    "archive_extracted_and_checked": true,
+    "owner_data_or_credentials_in_update": false,
+    "another_physical_Mac_claimed": false,
+    "historical_full_acceptance_not_relabelled": true,
+    "unrelated_skill_read_policy_rejections_not_changed": true
+  },
+  "owner_credentials_identity_or_history_included": false,
+  "old_private_backups_unchanged": true,
+  "new_physical_machine_claimed": false
+}

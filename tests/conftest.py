@@ -27,6 +27,9 @@ def fixture(tmp_path):
               "profile_home": str(tmp_path / "profile"), "state_root": str(tmp_path / "state"),
               "default_project": "p", "projects": {"p": str(project)},
               "working_beads": {"fixture": True}, "intake_context_bytes": 32768}
+    if BASELINE.get("path_relocations"):
+        config["package_root"]=BASELINE["memory_release"]
+        config["path_relocations"]=[{**item,"owner_id":config["namespace"]["owner_id"]} for item in BASELINE["path_relocations"]]
     store = Store(config["state_root"], config)
     store.initialize(); store.bind("parent")
     # A1 fixture of an already bound Beads work. No Beads execution is claimed.

@@ -1,0 +1,15 @@
+{
+  "Memory": "2.0.0-dev.45",
+  "Intake": "0.14.4",
+  "new_regressions": 14,
+  "existing_related_regressions": 101,
+  "real_Telegram_input_and_file_cycle": true,
+  "portable_install_on_separate_restored_copy": true,
+  "five_required_controls_registered": true,
+  "complete_pristine_inventory_objects": 239255,
+  "archive_extracted_and_checked": true,
+  "owner_data_or_credentials_in_update": false,
+  "another_physical_Mac_claimed": false,
+  "historical_full_acceptance_not_relabelled": true,
+  "unrelated_skill_read_policy_rejections_not_changed": true
+}

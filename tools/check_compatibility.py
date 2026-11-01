@@ -13,5 +13,5 @@ sys.path[:0]=[str(repo/'src'),str(Path(cfg['package_root'])),str(root/'hermes-ag
 from bnn_intake.deployment import config_at,common_plugin_target
 from bnn_intake.bootstrap import verify_native
 config_at(root,a.config);verify_native(cfg);target=common_plugin_target(root,Path(cfg['profile_home']))
-print(json.dumps({'compatible':True,'read_only':True,'component':'0.14.2','memory_version':contract['memory_version'],
+print(json.dumps({'compatible':True,'read_only':True,'component':'0.14.4','memory_version':contract['memory_version'],
  'core_commit':contract['core_git_commit'],'single_common_plugin_target':str(target),'model_or_network_calls':0}))

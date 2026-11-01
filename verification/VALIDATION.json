@@ -1,34 +1,42 @@
 {
-  "version": "0.14.2",
-  "portable_native_suite": {
-    "tests": "358",
-    "failures": "0",
-    "errors": "0",
-    "skipped": "0",
-    "time": "132.722"
-  },
-  "native_dependencies_unchanged": true,
-  "test_inputs_unchanged": true,
-  "runtime_source_matches_original_wheel": true,
-  "model_calls": 0,
-  "external_search_calls": 0,
-  "network_gateway_tested_by_this_suite": false,
-  "new_physical_machine_tested": false,
-  "privacy_scan": {
-    "text_and_binary_entries_scanned": 127,
-    "identifying_or_secret_findings": [],
-    "reviewed_negative_test_fixtures": [
-      {
-        "path": "tests/test_adapter.py",
-        "kind": "literal numeric negative-test fixture, not a credential",
-        "sha256": "5e70266c101b6c5c327fc529ed79c89ac791cfa3036a1d8368ab5c87d01aae84"
-      },
-      {
-        "path": "tests/test_research.py",
-        "kind": "literal numeric negative-test fixture, not a credential",
-        "sha256": "5e70266c101b6c5c327fc529ed79c89ac791cfa3036a1d8368ab5c87d01aae84"
-      }
-    ]
-  },
-  "full_Spec_acceptance_claimed": false
+  "version": "0.14.4",
+  "context_fix_new_tests": 14,
+  "related_existing_tests": 101,
+  "real_Telegram_cycle_on_working_variant": true,
+  "portable_source_and_wheel_members_checked": true,
+  "new_full_semantic_acceptance_claimed": false,
+  "previous_validation": {
+    "version": "0.14.2",
+    "portable_native_suite": {
+      "tests": "358",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "132.722"
+    },
+    "native_dependencies_unchanged": true,
+    "test_inputs_unchanged": true,
+    "runtime_source_matches_original_wheel": true,
+    "model_calls": 0,
+    "external_search_calls": 0,
+    "network_gateway_tested_by_this_suite": false,
+    "new_physical_machine_tested": false,
+    "privacy_scan": {
+      "text_and_binary_entries_scanned": 127,
+      "identifying_or_secret_findings": [],
+      "reviewed_negative_test_fixtures": [
+        {
+          "path": "tests/test_adapter.py",
+          "kind": "literal numeric negative-test fixture, not a credential",
+          "sha256": "5e70266c101b6c5c327fc529ed79c89ac791cfa3036a1d8368ab5c87d01aae84"
+        },
+        {
+          "path": "tests/test_research.py",
+          "kind": "literal numeric negative-test fixture, not a credential",
+          "sha256": "5e70266c101b6c5c327fc529ed79c89ac791cfa3036a1d8368ab5c87d01aae84"
+        }
+      ]
+    },
+    "full_Spec_acceptance_claimed": false
+  }
 }

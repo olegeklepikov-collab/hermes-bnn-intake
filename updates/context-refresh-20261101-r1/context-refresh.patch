@@ -1,0 +1,76 @@
+--- a/bn_memory/admission.py
++++ b/bn_memory/admission.py
+@@ -168,12 +168,13 @@
+         with self.store.db() as connection:
+             connection.execute("UPDATE context_admissions SET status='failed' WHERE profile_id=? AND sid=?",(self.store.profile,sid))
+ 
+-    def row(self, sid, turn_id):
++    def row(self, sid, turn_id, *, allow_refresh_required=False):
+         if not turn_id:
+             raise PermissionError('native_turn_id_required')
+         with self.store.db() as connection:
+             row = connection.execute('SELECT * FROM context_admissions WHERE profile_id=? AND sid=?', (self.store.profile,sid)).fetchone()
+-        if row is None or row['turn_id'] != turn_id or row['status'] != 'ready':
++        allowed = {'ready', 'refresh_required'} if allow_refresh_required else {'ready'}
++        if row is None or row['turn_id'] != turn_id or row['status'] not in allowed:
+             raise PermissionError('current_turn_context_not_ready')
+         return dict(row)
+ 
+@@ -211,20 +212,20 @@
+                 raise PermissionError('current_input_anchor_mismatch')
+ 
+     def ready(self, sid, turn_id, request=None, refresh=False):
+-        row = self.row(sid, turn_id)
++        row = self.row(sid, turn_id, allow_refresh_required=refresh)
+         if request is not None:
+             self.check_anchor(row, request)
+         current = self.snapshot(sid)
+         if current[:3] != (row['binding_hash'], row['profile_hash'], row['policy_revision']):
+             raise PermissionError('context_role_profile_or_policy_changed')
+-        if current[3] != row['data_epoch']:
++        if row['status'] == 'refresh_required' or current[3] != row['data_epoch']:
+             if not refresh:
+                 raise PermissionError('context_data_revision_changed')
+             token = uuid.uuid4().hex
+             retired = json.loads(row['retired']) + [row['envelope']]
+             with self.store.db() as connection:
+-                changed = connection.execute("UPDATE context_admissions SET status='preparing',token=?,data_epoch=?,context_hash=NULL,envelope=NULL,retired=? WHERE profile_id=? AND sid=? AND token=? AND status='ready'",
+-                                              (token, current[3], canonical(retired), self.store.profile,sid,row['token'])).rowcount
++                changed = connection.execute("UPDATE context_admissions SET status='preparing',token=?,data_epoch=?,context_hash=NULL,envelope=NULL,retired=? WHERE profile_id=? AND sid=? AND token=? AND status=?",
++                                              (token, current[3], canonical(retired), self.store.profile,sid,row['token'],row['status'])).rowcount
+                 if changed != 1:
+                     raise PermissionError('context_refresh_superseded')
+                 connection.execute('UPDATE sessions SET context=NULL,turn=NULL WHERE profile_id=? AND sid=?', (self.store.profile,sid))
+--- a/bn_memory/action_control.py
++++ b/bn_memory/action_control.py
+@@ -93,7 +93,9 @@
+ 
+     def _permission(self, sid, turn, name, args):
+         binding = self.host.store.binding(sid)
+-        row = self.host.admission.row(sid, turn)
++        # Data freshness can require a new model packet without revoking this
++        # native turn's authority. Failed/preparing/wrong-turn admissions stay closed.
++        row = self.host.admission.row(sid, turn, allow_refresh_required=True)
+         snapshot = self.host.admission.snapshot(sid)
+         # Authority can survive a same-turn memory write; evidence freshness is checked separately.
+         if snapshot[:3] != (row['binding_hash'], row['profile_hash'], row['policy_revision']):
+--- a/bn_memory/source_policy_scope.py
++++ b/bn_memory/source_policy_scope.py
+@@ -64,7 +64,7 @@
+         if key(binding)==row['used_binding']:affected.add((row['profile_id'],row['sid']))
+     for identity in sorted(affected):
+         db.execute('UPDATE sessions SET context=NULL,turn=NULL WHERE profile_id=? AND sid=?',identity)
+-        db.execute("UPDATE context_admissions SET status='failed' WHERE profile_id=? AND sid=? AND status IN ('preparing','ready')",identity)
++        db.execute("UPDATE context_admissions SET status='failed' WHERE profile_id=? AND sid=? AND status IN ('preparing','ready','refresh_required')",identity)
+     return len(affected)
+ 
+ def retrieval_fingerprint(store,db,binding):
+@@ -142,7 +142,7 @@
+         if not affected_scopes.intersection({'owner','project:'+row['project'],'task:'+row['task']}):continue
+         identity=(row['profile_id'],row['sid']);count+=1
+         db.execute('UPDATE sessions SET context=NULL,turn=NULL WHERE profile_id=? AND sid=?',identity)
+-        db.execute("UPDATE context_admissions SET status='failed' WHERE profile_id=? AND sid=? AND status IN ('preparing','ready')",identity)
++        db.execute("UPDATE context_admissions SET status=CASE WHEN status='preparing' THEN 'failed' ELSE 'refresh_required' END WHERE profile_id=? AND sid=? AND status IN ('preparing','ready','refresh_required')",identity)
+     for kind,identifier in affected:
+         if kind=='source':count+=invalidate(db,identifier)
+     return count

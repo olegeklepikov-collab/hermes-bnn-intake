@@ -1,10 +1,10 @@
 {
-  "version": "0.14.2",
-  "source_commit": "aaa3d76e4fb6c974bdfc691997a41e6445b3ed47",
-  "runtime_source_files_copied_without_modification": true,
-  "test_portability_changes_only": true,
-  "original_development_history_included": false,
-  "native_dependencies_included": false,
-  "profiles_or_credentials_or_identity_included": false,
-  "repository_contents_same_for_public_and_private": true
+  "version": "0.14.4",
+  "predecessor_full": "0.14.3",
+  "predecessor_module": "0.14.2",
+  "Intake_algorithm_code_unchanged": true,
+  "Memory_control_correction_files": 3,
+  "memory_version": "2.0.0-dev.45",
+  "owner_state_included": false,
+  "compatibility_is_instance_bound_at_install": true
 }

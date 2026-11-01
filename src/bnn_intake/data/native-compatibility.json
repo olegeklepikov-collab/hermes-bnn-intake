@@ -1,10 +1,10 @@
 {
   "contract": "BNNIntakeNativeCompatibilityV1",
-  "memory_version": "2.0.0-dev.43",
+  "memory_version": "2.0.0-dev.45",
   "core_git_commit": "d923a5eb487a17c0a68801bba9ef0f56c81040a8",
   "memory_files": {
-    "manifest.json": "02ab21fcc356e6ec9f10bffaff01345f387b0fcf4d78c49c7e90d6dd3434d91f",
-    "release.json": "47b732d7c1a332614688ab9bbb6f6d1828510b3bcd7d0cd856113714e2953d8d",
+    "manifest.json": "42bfef3263a322f96a53b7a72a66834d077b2ad3b47998f70545d9544fe94658",
+    "release.json": "b1b1969ec0a305545d26b3029a90aed715a6e09436110ae214369d273ecf82fa",
     "bn_memory/plugin.py": "0a873eb2897c4b08af0a24e0717df860ec71b890c8dd85228f93bb59f015ee96"
   },
   "core_files": {

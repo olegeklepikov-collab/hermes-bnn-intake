@@ -19,4 +19,4 @@ def load(repo):
     pins[str(settings)]=hashlib.sha256(settings.read_bytes()).hexdigest()
     document=Path(os.environ.get('HERMES_INTAKE_DOCUMENT_PYTHON',str(root/'DocumentRuntime/venv/bin/python')))
     if not document.is_file():raise RuntimeError('Native document execution environment required; no success without an executor')
-    return {'memory_release':str(memory),'hermes_core':str(core),'document_python':str(document),'source_hashes':pins}
+    return {'memory_release':str(memory),'hermes_core':str(core),'document_python':str(document),'source_hashes':pins,'path_relocations':json.loads(settings.read_text()).get('path_relocations',[])}
