@@ -113,6 +113,9 @@ class Outcomes:
         try:
             selected = self.engine.analysis.selected(sid)
         except Exception as exc:
+            from bn_memory.storage_guard import denied
+            failure=denied(exc,'application_selection')
+            if failure:raise failure from exc
             raise ExecutionControlDenied("intake_application_preparation_failed:" + safe_reason(exc)) from exc
         if selected is None:
             return original(request, next_call, **identity)
@@ -149,7 +152,9 @@ class Outcomes:
                     value["status"] = "returned_stale"
             except Exception:
                 value["status"] = "returned_stale"
-            self.save(value)
+            storage=getattr(self.host,'storage',None)
+            if storage:storage.persist(lambda:self.save(value))
+            else:self.save(value)
             return response
         except BaseException as exc:
             if value["status"] in {"preparing", "admitted"}:
@@ -164,8 +169,13 @@ class Outcomes:
                                                               "source": "usage_unavailable_for_error_response"})
                 value["error_type"] = type(cause).__name__
             try:
-                self.save(value)
+                storage=getattr(self.host,'storage',None)
+                if storage:storage.persist(lambda:self.save(value))
+                else:self.save(value)
             except Exception as journal_error:
+                from bn_memory.storage_guard import denied
+                failure=denied(journal_error,'intake_outcome_settlement',value['status']!='not_dispatched')
+                if failure:raise failure from journal_error
                 raise ExecutionControlDenied("intake_required_model_outcome_settlement_failed") from journal_error
             raise
         finally:

@@ -82,6 +82,11 @@ def register_common(host, ctx):
     Changes to supplier code require reviewing this adapter, not silently
     executing an edited vendor function or replacing its Host factory.
     """
+    from bnn_intake.context_preparation import install_context_preparation
+    install_context_preparation(host)
+    if host.config.get('native_background_review',False):
+        from bn_memory.background_review import register as register_native_review
+        ctx.on_unload(register_native_review(host,ctx))
     if host.identity:
         from agent.identity_provider import register_identity_provider
         ctx.on_unload(register_identity_provider(host.admission.profile_home, host.identity.resolve))
@@ -89,7 +94,7 @@ def register_common(host, ctx):
     ctx.on_unload(register_child_checkpoint_adapter("bn-common-memory", host.checkpoints.child_adapter,
         profile_home=host.admission.profile_home,
         **({"on_compression_complete": host.checkpoints.native_commit} if host.modules else {})))
-    for name, fn in [("pre_llm_call", host.before_turn), ("subagent_start", host.child_start)]:
+    for name, fn in [("pre_llm_call", getattr(host, "stage_turn", host.before_turn)), ("subagent_start", host.child_start)]:
         ctx.register_hook(name, fn)
     for name, fn in [("tool_request", host.tool_request), ("tool_execution", host.tool_execution),
                      ("llm_request", host.request), ("llm_execution", host.execution)]:

@@ -35,7 +35,8 @@ def test_different_executable_is_not_admitted_by_the_alias():
 
 def test_real_relocated_compute_cannot_read_the_original_owner_state():
     cfg=installed();origin=Path(cfg['path_relocations'][0]['from']);workspace=Path(cfg['projects'][cfg['default_project']])
-    with tempfile.TemporaryDirectory(dir=workspace) as name:
+    with tempfile.TemporaryDirectory(dir=workspace) as name, tempfile.TemporaryDirectory(prefix='synthetic-other-owner-') as other:
+        origin=Path(other);(origin/'data').mkdir();(origin/'data/auth.json').write_text('synthetic-no-real-credential')
         job=Path(name);(job/'control').mkdir();script=job/'script.py';inputs=job/'inputs.json'
         script.write_text("from pathlib import Path\ntry:\n Path("+repr(str(origin/'data/auth.json'))+").read_bytes()\n print('UNEXPECTED_READ')\nexcept PermissionError:\n print('SOURCE_STATE_DENIED')\n")
         inputs.write_text('{}');result=run(cfg,job,script,inputs)

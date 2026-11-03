@@ -1,11 +1,13 @@
 {
   "contract": "BNNIntakeNativeCompatibilityV1",
-  "memory_version": "2.0.0-dev.45",
+  "memory_version": "2.0.0-dev.53",
   "core_git_commit": "d923a5eb487a17c0a68801bba9ef0f56c81040a8",
   "memory_files": {
-    "manifest.json": "42bfef3263a322f96a53b7a72a66834d077b2ad3b47998f70545d9544fe94658",
-    "release.json": "b1b1969ec0a305545d26b3029a90aed715a6e09436110ae214369d273ecf82fa",
-    "bn_memory/plugin.py": "0a873eb2897c4b08af0a24e0717df860ec71b890c8dd85228f93bb59f015ee96"
+    "manifest.json": "caa600f0c4955559384ccbcd70ae82d4999df909e8af6078374c757bd06c0246",
+    "release.json": "774fe2896587b2463123e4523fb29ac66ddda901097ba0aba79d492eb8d9767d",
+    "bn_memory/plugin.py": "ce25178f5b8cd13002151d13d2b5aa0ae1a4b92e87bcad57b111078bd50e673c",
+    "bn_memory/recall_results.py": "4bf8ab32ea6b93df8458a0fa0ea34ddb615497e5de86a4d3d987652775d08c12",
+    "bn_memory/storage_guard.py": "30af09ca6dda5c180b9d37751fb493db951cd26fedf3d526b1e64922587e4617"
   },
   "core_files": {
     "hermes_cli/plugins.py": "9ab340f73bc920ed46edbd0d942bb197df59887430473019a5050df606b2c1f3",
@@ -23,6 +25,13 @@
     "agent/agent_init.py": "9f8c91db2ae36194dcd0e187d8ef237fd8337ef35b8f4eb22b4faf6cf6575187",
     "agent/subagent_lifecycle.py": "94961282ce1f8170d8e9d6a6981511d4497ed0e9369bf1253a6355555693f823",
     "tools/delegate_tool_config.py": "a0360af946ad929fac017d5299438c400f48ebe5e82edb0c8cd2e38d8d170dcb",
-    "tools/delegate_tool.py": "dffa3a491b4b774d6639bae21913a684d2e504a01e045605b33cbe5b13c8ab35"
+    "tools/delegate_tool.py": "dffa3a491b4b774d6639bae21913a684d2e504a01e045605b33cbe5b13c8ab35",
+    "gateway/shutdown_watchdog.py": "e157f02e9e3e8430050404f8450f4a8a87922cc639afd5e7a9714a43a6f2e0e6",
+    "agent/background_review.py": "dd18e9d735541a6da0ac233aca0c1f82cec73fd1f4299e18f7acd5477ed48a5e",
+    "agent/background_review_adapter.py": "111089f9dcf35c1c9d0b7c5e931a8a9f71b95a7f7df4f8b7a041ac42d11a68a0",
+    "agent/turn_api_error.py": "ebb77fde16d071251265ef90b5da6fc07bc5028640ecbb46d307d1dbf9026bbe",
+    "agent/turn_failure_copy.py": "b26cc0a4cd8a8ccacc86dd37980e97f13315034225e68811e136ef3c559db907",
+    "agent/conversation_loop.py": "da76c1616cc651e8a468b88fe139c4afa5eeaa9a5d63b13543f0614fdb60e15b",
+    "agent/turn_request_assembly.py": "ae2a9f21bca331318887d0399861ea241f43321386c7c5133aadf46d45ebe022"
   }
 }

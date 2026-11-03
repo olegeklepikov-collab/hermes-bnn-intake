@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hermes-bnn-intake"
-version = "0.14.4"
+version = "0.14.13"
 description = "Optional versioned semantic intake on the existing Hermes BNN memory store"
 requires-python = ">=3.11"
 dependencies = ["jsonschema>=4.18,<5"]

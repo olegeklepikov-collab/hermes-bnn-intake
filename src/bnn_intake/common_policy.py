@@ -35,13 +35,22 @@ class ResearchMemoryProjection:
             'retrieval':found,'working':self.host.working.view(self.sid),
             'extraction_is_not_complete_original_reading':True}
         text=canonical(value)
-        if len(text.encode())>self.host.config.get('context_bytes',200000):raise PermissionError('research_projection_split_required_do_not_trim')
+        # A factual selection allowance is not the serialized Foundation packet
+        # allowance (query, provenance and complete working state included).
+        bound=self.host.config.get('research_context_bytes',200000)
+        if type(bound) is not int or bound<1:raise ValueError('research_context_bound_invalid')
+        if len(text.encode())>bound:raise PermissionError('research_projection_split_required_do_not_trim')
         return {'status':'assembled','scope':scope,'context':text,'context_hash':sha(text),
                 'adapter':'scoped public recall; native parent context remains unchanged'}
     def __getattr__(self,name):return getattr(self.original,name)
 
 
 def install_runtime_adapters(host):
+    if host.config.get('native_background_review',False) and not getattr(host,'_review_references_installed',False):
+        from bn_memory.background_review import references
+        assembled=host.assembled_context
+        host.assembled_context=lambda sid,query,turn:assembled(sid,query,turn)+references(host,sid)
+        host._review_references_installed=True
     if not host.modules or getattr(host,'_system_acceptance_research_adapter',False):return
     original=host.modules.require
     def require(sid,module):
@@ -64,6 +73,7 @@ def standalone_source():
     """Install self-contained off-loader code; no optional package import at run time."""
     from .bootstrap import compatibility,register_common
     from .parent_route import ParentRoute,Context
+    from .context_preparation import ContextPreparation,install_context_preparation
     prefix='''from pathlib import Path
 import hashlib,json,dataclasses,os
 
@@ -85,4 +95,6 @@ def register(ctx):
     host.assembled_context=lambda sid,query,turn:original(sid,query,turn)+'\\n'+POLICY_FRAME
     register_common(host,ctx)
 '''
-    return 'PINNED='+repr(compatibility())+'\nPOLICY_FRAME='+repr(frame())+'\n'+prefix+'\n'+inspect.getsource(ParentRoute)+'\n'+inspect.getsource(Context)+'\n'+inspect.getsource(ResearchMemoryProjection)+'\n'+inspect.getsource(install_runtime_adapters)+'\n'+inspect.getsource(register_common)
+    adapter=inspect.getsource(install_runtime_adapters).replace('    from .context_preparation import install_context_preparation\n','')
+    registration=inspect.getsource(register_common).replace('    from bnn_intake.context_preparation import install_context_preparation\n','')
+    return 'PINNED='+repr(compatibility())+'\nPOLICY_FRAME='+repr(frame())+'\n'+prefix+'\n'+inspect.getsource(ParentRoute)+'\n'+inspect.getsource(Context)+'\n'+inspect.getsource(ContextPreparation)+'\n'+inspect.getsource(install_context_preparation)+'\n'+inspect.getsource(ResearchMemoryProjection)+'\n'+adapter+'\n'+registration

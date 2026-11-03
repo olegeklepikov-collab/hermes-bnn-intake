@@ -54,7 +54,20 @@ class ContextBridge:
         if getattr(self.host, "_intake_context_bridge", None) is self:
             del self.host._intake_context_bridge
 
+    def storage_admission(self):
+        storage=getattr(self.host,'storage',None)
+        if storage:
+            try:storage.require('primary')
+            except Exception as exc:
+                from bn_memory.storage_guard import fault
+                if not fault(exc):raise
+                from hermes_cli.execution_control import ExecutionDecision
+                return ExecutionDecision(False,str(exc))
+        return None
+
     def tool_control(self, payload, **identity):
+        storage_failure=self.storage_admission()
+        if storage_failure is not None:return storage_failure
         from hermes_cli.execution_control import ExecutionDecision
         if self.preflight is not None:
             try:
@@ -74,6 +87,7 @@ class ContextBridge:
         return decision
 
     def result_control(self, payload, **identity):
+        if getattr(self.host,'storage',None):self.host.storage.finalizing()
         from hermes_cli.execution_control import ExecutionDecision
         decision = self.originals["result_control"](payload, **identity)
         if decision.allow:
@@ -95,6 +109,14 @@ class ContextBridge:
         return decision
 
     def execution(self, request, next_call, **identity):
+        storage=getattr(self.host,'storage',None)
+        if storage:
+            try:storage.require('primary',probe=True)
+            except Exception as exc:
+                from bn_memory.storage_guard import denied
+                failure=denied(exc,'application_preparation')
+                if failure:raise failure from exc
+                raise
         def checked(outgoing):
             if identity.get("execution_kind") != "auxiliary":
                 try:
@@ -106,6 +128,8 @@ class ContextBridge:
         return self.outcomes.execute(request, checked, self.originals["execution"], **identity)
 
     def launch_control(self, payload, **identity):
+        storage_failure=self.storage_admission()
+        if storage_failure is not None:return storage_failure
         from hermes_cli.execution_control import ExecutionDecision
         try:
             plan = self.engine.delegation.launch_plan(payload, identity)
@@ -231,6 +255,12 @@ class ContextBridge:
         if current_auxiliary_attempt() is not None:
             return self.originals["request"](request, session_id=session_id, platform=platform, **kw)
         turn = kw.get("turn_id")
+        # Native compression may wrap the current goal. Restore it only from
+        # the exact committed checkpoint BEFORE checking the Intake envelope.
+        # Without that receipt restore_goal remains fail-closed.
+        if self.host.modules:
+            request=__import__('copy').deepcopy(request)
+            self.host.checkpoints.restore_goal(session_id,turn,request)
         row = self.host.admission.ready(session_id, turn, request, refresh=True)
         frame = self.frame(session_id)
         if frame["receipt_required"]:
@@ -298,6 +328,8 @@ class ContextBridge:
         return row["token"]
 
     def control(self, payload, session_id="", platform="", execution_kind="", **kw):
+        storage_failure=self.storage_admission()
+        if storage_failure is not None:return storage_failure
         from hermes_cli.execution_control import ExecutionDecision
         if execution_kind == "auxiliary":
             return self.originals["model_control"](payload, session_id=session_id, platform=platform, execution_kind=execution_kind, **kw)

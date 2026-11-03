@@ -134,6 +134,8 @@ def attach(host, ctx):
                 if handle is not None:
                     handle.dispose()
             raise
+    from .context_preparation import install_context_preparation
+    install_context_preparation(host)
     return {"engine": engine, "registrations": handles,
             "context_bridge": bridge,
             "live_activation": False, "native_dispatch_qualified": False}

@@ -5,7 +5,8 @@ root=Path(__file__).resolve().parents[1];m=json.loads((root/'PACKAGE-MANIFEST.js
 for name,h in m['files'].items():
  p=root/name
  if p.is_symlink() or not p.is_file() or hashlib.sha256(p.read_bytes()).hexdigest()!=h:raise SystemExit('Payload mismatch: '+name)
-wheel=root/'packages/hermes_bnn_intake-0.14.4-py3-none-any.whl';contract=json.loads((root/'packages/manifest.json').read_text())
+contract=json.loads((root/'packages/manifest.json').read_text())
+wheel=root/'packages'/contract['wheel']
 if hashlib.sha256(wheel.read_bytes()).hexdigest()!=contract['wheel_sha256']:raise SystemExit('Wheel mismatch')
 with zipfile.ZipFile(wheel) as archive:
  for name,h in contract['members_sha256'].items():

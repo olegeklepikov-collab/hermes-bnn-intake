@@ -27,7 +27,8 @@ class ContextFixture:
 
 
 def host(store, ready=None):
-    return SimpleNamespace(store=store, modules=None, broker=SimpleNamespace(store=store, config=store.config), document_role=lambda sid: None, admission=SimpleNamespace(
+    return SimpleNamespace(store=store, config=store.config, before_turn=lambda **kw: None, request=lambda *a,**kw: None,
+        modules=None, broker=SimpleNamespace(store=store, config=store.config), document_role=lambda sid: None, admission=SimpleNamespace(
         profile_home=store.config["profile_home"], ready=ready or (lambda sid, turn: None)))
 
 

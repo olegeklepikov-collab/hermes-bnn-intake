@@ -1,0 +1,9 @@
+{
+  "canonical_full_source": "olegeklepikov-collab/hermes-bnn-full-private",
+  "canonical_source_commit": "73fde2db8c8a0679e2b67724d6fb8af7d03a4d81",
+  "canonical_directory": "product/Intake",
+  "Intake": "0.14.13",
+  "requires_Memory": "2.0.0-dev.53",
+  "native_compatibility_must_match": true,
+  "contains_owner_data_or_credentials": false
+}
