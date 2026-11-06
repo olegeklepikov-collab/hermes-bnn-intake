@@ -1,0 +1,35 @@
+{
+  "contract": "BNNCurrentReleaseIndexV1",
+  "product_version": "2026.11.17",
+  "Memory": "2.0.0-dev.55",
+  "Intake": "0.14.15",
+  "runtime_source_commit": "6e97a28b95b1feae0fcfc8d3c1109a72ec9cb131",
+  "product_git_tree": "d2c5f8343e1def5b4f85962d56d381d344d4b133",
+  "full_release": {
+    "public": "https://github.com/olegeklepikov-collab/hermes-bnn-full/releases/tag/bnn-2026.11.17",
+    "private": "https://github.com/olegeklepikov-collab/hermes-bnn-full-private/releases/tag/bnn-2026.11.17",
+    "archive_name": "Hermes-BNN-2026.11.17-g6e97a28b95b1-macos-arm64.tar.gz",
+    "archive_bytes": 6317816993,
+    "archive_sha256": "8afb1a06e9495e1d5329c7d81b0fd90fae654473dbb70a2ce790c3a6b7c3bd2d",
+    "parts": 24,
+    "qualification": "native-qualified candidate; full service reacceptance and another physical Mac are not claimed"
+  },
+  "Intake_release": {
+    "public": "https://github.com/olegeklepikov-collab/hermes-bnn-intake/releases/tag/intake-0.14.15-20261106",
+    "private": "https://github.com/olegeklepikov-collab/hermes-bnn-intake-private/releases/tag/intake-0.14.15-20261106",
+    "archive": {
+      "Memory_compatibility": "2.0.0-dev.55",
+      "archive": "Hermes-BNN-Intake-0.14.15-full.zip",
+      "bytes": 2422494,
+      "owner_data_or_credentials": false,
+      "password_required": false,
+      "sha256": "a1e551afff0c72e8afbf489c8988fe165184848b83d34be9cadfb42ef3aeefa5",
+      "source_commit": "6e97a28b95b1feae0fcfc8d3c1109a72ec9cb131",
+      "source_files_verified": 113,
+      "version": "0.14.15",
+      "whole_platform_required_for_fresh_Hermes_install": true
+    }
+  },
+  "owner_data_or_credentials_in_neutral_release": false,
+  "automatic_production_deployment": false
+}
