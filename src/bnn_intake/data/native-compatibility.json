@@ -1,11 +1,11 @@
 {
   "contract": "BNNIntakeNativeCompatibilityV1",
-  "memory_version": "2.0.0-dev.54",
+  "memory_version": "2.0.0-dev.55",
   "core_git_commit": "d923a5eb487a17c0a68801bba9ef0f56c81040a8",
   "memory_files": {
-    "manifest.json": "7e9d04c6b1fe10dc39ef1836ba25ec0eedfd475a1bba02693501a275e7bcf50d",
-    "release.json": "2ebdc53e5f759a88a68915852da1a024502c5e217cdc259acea99e068834ab2d",
-    "bn_memory/plugin.py": "ce25178f5b8cd13002151d13d2b5aa0ae1a4b92e87bcad57b111078bd50e673c",
+    "manifest.json": "ee859cae13eee7d0f033c8c3d4ffc0c41f87e6c5e7baef52b6402ceb00cb09fb",
+    "release.json": "e14c1248e6c0fdd7bf2b88459f01adadbb82cdf158e69110d351d3e836dce0a1",
+    "bn_memory/plugin.py": "a969fd5b9a0aa99e52684cef7a87401dc64d65e88a060badb7b62baf092faa32",
     "bn_memory/recall_results.py": "4bf8ab32ea6b93df8458a0fa0ea34ddb615497e5de86a4d3d987652775d08c12",
     "bn_memory/storage_guard.py": "30af09ca6dda5c180b9d37751fb493db951cd26fedf3d526b1e64922587e4617"
   },
@@ -32,6 +32,8 @@
     "agent/turn_api_error.py": "ebb77fde16d071251265ef90b5da6fc07bc5028640ecbb46d307d1dbf9026bbe",
     "agent/turn_failure_copy.py": "b26cc0a4cd8a8ccacc86dd37980e97f13315034225e68811e136ef3c559db907",
     "agent/conversation_loop.py": "da76c1616cc651e8a468b88fe139c4afa5eeaa9a5d63b13543f0614fdb60e15b",
-    "agent/turn_request_assembly.py": "ae2a9f21bca331318887d0399861ea241f43321386c7c5133aadf46d45ebe022"
+    "agent/turn_request_assembly.py": "ae2a9f21bca331318887d0399861ea241f43321386c7c5133aadf46d45ebe022",
+    "agent/tool_dispatch_helpers.py": "459226a002310e291dd125f4d3a09cd36b784447a3777c3f1189865a260c754e",
+    "tools/delegate_tool_progress.py": "7b18449e997fb762dff97f2b400524e53cf5bf44b26ab21807545eca6ee75a84"
   }
 }
