@@ -1,8 +1,8 @@
-Текущая исходная пара: Memory 2.0.0-dev.53 + Intake 0.14.13. Полная установка выполняется цельным выпуском; отдельные исторические исправления не нужны.
+Текущая исходная пара: Memory 2.0.0-dev.54 + Intake 0.14.14. Полная установка выполняется цельным выпуском; отдельные исторические исправления не нужны.
 
-> В полном комплекте установка Intake уже выполняется `install.sh`. Ниже отдельные операции сопровождения; сначала читайте [полную инструкцию платформы](../docs/INSTALL_MACOS.md). Повторно устанавливать поверх подключённой библиотеки не требуется.
+> В полном комплекте установка Intake уже выполняется `install.sh`. Ниже отдельные операции сопровождения; сначала читайте [полную инструкцию платформы](https://github.com/olegeklepikov-collab/hermes-bnn-full/blob/main/product/docs/INSTALL_MACOS.md). Повторно устанавливать поверх подключённой библиотеки не требуется.
 
-# Интеграция Hermes BNN Intake 0.14.13
+# Интеграция Hermes BNN Intake 0.14.14
 
 ## 1. Область установки
 
@@ -10,7 +10,7 @@
 
 Состав: исходный код, wheel, проверяющий установщик, точные схемы инструментов, каталог методов, тесты, манифесты, небольшой патч старых средств обслуживания и эта инструкция. Базы, исследовательские корпуса, учётные данные, личность, архивы старого владельца и внешние программы отсутствуют.
 
-Связанные проекты: [публичная поставка Hermes BN](https://github.com/olegeklepikov-collab/hermes-bn-gsd-udr-public), [Hermes UDR](https://github.com/olegeklepikov-collab/hermes-udr). Эти ссылки не означают, что любой их выпуск автоматически совместим с Intake 0.14.13. Сначала сопоставьте точные версии и контрольные суммы.
+Связанные проекты: [публичная поставка Hermes BN](https://github.com/olegeklepikov-collab/hermes-bn-gsd-udr-public), [Hermes UDR](https://github.com/olegeklepikov-collab/hermes-udr). Эти ссылки не означают, что любой их выпуск автоматически совместим с Intake 0.14.14. Сначала сопоставьте точные версии и контрольные суммы.
 
 ## 2. Необходимая основа
 
@@ -19,7 +19,7 @@
 | ОС | Квалификация выполнена на macOS Apple Silicon; другие ОС и архитектуры отдельно не приняты |
 | Python | Метаданные пакета требуют 3.11+; использовать собственную среду Python установленной Hermes, в которой доступны `jsonschema` и `PyYAML` |
 | Hermes | Commit `d923a5eb487a17c0a68801bba9ef0f56c81040a8` и точные закреплённые файлы интерфейсов |
-| Общая память | `2.0.0-dev.53`, существующий `bn_memory.Store`, основной `memory.sqlite`, настройки и собственный ключ подписи |
+| Общая память | `2.0.0-dev.54`, существующий `bn_memory.Store`, основной `memory.sqlite`, настройки и собственный ключ подписи |
 | Основная работа | Родная рабочая карточка и Beads; второй главный граф задач не создаётся |
 | Документы | Штатные `Documents`, изолированные исполнители разбора и среды нужных форматов, если требуется документарная работа |
 | GSD | Согласованный установленный SDK и нативные роли для маршрутов G/S/D; не нужен для простого отключения Intake |
@@ -32,7 +32,7 @@
 
 ## 3. Получить и проверить именно полный комплект
 
-Эта редакция 0.14.13 предназначена для полной платформы Memory 2.0.0-dev.53. Используйте цельный проверенный выпуск `hermes-bnn-full` либо `hermes-bnn-full-private`, затем его `install.sh`. Исторические отдельные поставки Intake нельзя подставлять вместо wheel и точных закреплений этой пары.
+Эта редакция 0.14.14 предназначена для полной платформы Memory 2.0.0-dev.54. Используйте цельный проверенный выпуск `hermes-bnn-full` либо `hermes-bnn-full-private`, затем его `install.sh`. Исторические отдельные поставки Intake нельзя подставлять вместо wheel и точных закреплений этой пары.
 
 После распаковки из полного архива исходный каталог находится в `Hermes-BNN-Full/Intake`. Для отдельной проверки из этого каталога:
 
@@ -53,10 +53,10 @@ HERMES_INTAKE_ROOT='/полный/путь/к/собственному/Hermes-BN
 HERMES_INTAKE_CONFIG="$HERMES_INTAKE_ROOT/Memory/settings.json"
 HERMES_INTAKE_PROFILE="$HERMES_INTAKE_ROOT/data"
 HERMES_INTAKE_CORE="$HERMES_INTAKE_ROOT/hermes-agent"
-HERMES_INTAKE_MEMORY="$HERMES_INTAKE_ROOT/Memory/releases/2.0.0-dev.53"
+HERMES_INTAKE_MEMORY="$HERMES_INTAKE_ROOT/Memory/releases/2.0.0-dev.54"
 HERMES_INTAKE_PYTHON="$HERMES_INTAKE_CORE/venv/bin/python"
-HERMES_INTAKE_LIB="$HERMES_INTAKE_ROOT/Intake/0.14.13"
-HERMES_INTAKE_WHEEL="$HERMES_INTAKE_REPO/packages/hermes_bnn_intake-0.14.13-py3-none-any.whl"
+HERMES_INTAKE_LIB="$HERMES_INTAKE_ROOT/Intake/0.14.14"
+HERMES_INTAKE_WHEEL="$HERMES_INTAKE_REPO/packages/hermes_bnn_intake-0.14.14-py3-none-any.whl"
 ```
 
 Если профиль или настройки лежат иначе, возьмите значения из своей установленной конфигурации. `HERMES_INTAKE_PROFILE` должен точно совпадать с её `profile_home`. Каталог библиотеки должен быть новым: установщик не затирает существующие файлы.
@@ -106,7 +106,7 @@ export PYTHONDONTWRITEBYTECODE=1
 "$HERMES_INTAKE_PYTHON" -c 'import bnn_intake; print(bnn_intake.__version__, bnn_intake.__file__)'
 ```
 
-Ожидаются `0.14.13` и путь внутри установленной библиотеки, без импорта из `src` другой копии.
+Ожидаются `0.14.14` и путь внутри установленной библиотеки, без импорта из `src` другой копии.
 
 ## 8. Подключить к существующему Host
 
